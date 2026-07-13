@@ -481,12 +481,20 @@ code{
     <div class="step-n" id="sn3">3</div>
     <div class="step-title-wrap">
       <div class="step-title">MOD を全部インストールする</div>
-      <div class="step-meta">管理者から受け取った mods.zip を使います</div>
+      <div class="step-meta">下のリンクから mods.zip をダウンロードします</div>
     </div>
     <button class="step-check" id="sc3" onclick="event.stopPropagation();check(3)" title="完了したらチェック">✓</button>
   </div>
   <div class="step-body" id="sb3">
-    <p class="prose"><strong>① mods フォルダを開く</strong></p>
+    <div class="action">
+      <div class="action-label">① まず mods.zip をダウンロードする</div>
+      <div class="action-row">
+        <div class="action-val">https://github.com/bartsukasa/tsukapyon-mc/releases/download/v1.0/mods.zip</div>
+        <button class="action-btn" onclick="window.open('https://github.com/bartsukasa/tsukapyon-mc/releases/download/v1.0/mods.zip')">DL</button>
+      </div>
+    </div>
+
+    <p class="prose"><strong>② mods フォルダを開く</strong></p>
     <p class="prose">キーボードの <code>Windowsキー</code> と <code>R</code> を同時押しすると「ファイル名を指定して実行」が開きます。以下をコピーして貼り付け、Enterを押してください。</p>
 
     <div class="action">
