@@ -1,1015 +1,1019 @@
-<title>Tsukapyon MC | 参加ガイド</title>
+<!DOCTYPE html>
+<html lang="ja" data-theme="light">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tsukapyon MC | 参加ガイド</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
+/* ── AMK Token System ── */
 :root {
-  --bg:      #0b0f0b;
-  --bg1:     #141914;
-  --bg2:     #1c221c;
-  --bg3:     #242c24;
-  --line:    #2c362c;
-  --text:    #e2ead8;
-  --sub:     #6a826a;
-  --green:   #5cb85c;
-  --green2:  #3d7a3d;
-  --gold:    #e8c44a;
-  --red:     #e05555;
-  --blue:    #5aabda;
-  --orange:  #e8884b;
-  --mono:    "Consolas","Courier New",monospace;
-  --sans:    "Hiragino Sans","Yu Gothic UI","Meiryo",system-ui,sans-serif;
-  --r:       6px;
-  --sidebar: 220px;
-}
-@media(prefers-color-scheme:light){:root{
-  --bg:#f2f5ef;--bg1:#ffffff;--bg2:#edf2ea;--bg3:#e4ebe0;--line:#cdd8c5;
-  --text:#1a261a;--sub:#6a826a;--green:#2e7d2e;--green2:#1a5a1a;--gold:#b5840a;
-  --red:#c62828;--blue:#1565c0;--orange:#c85a10;
-}}
-:root[data-theme=light]{
-  --bg:#f2f5ef;--bg1:#ffffff;--bg2:#edf2ea;--bg3:#e4ebe0;--line:#cdd8c5;
-  --text:#1a261a;--sub:#6a826a;--green:#2e7d2e;--green2:#1a5a1a;--gold:#b5840a;
-  --red:#c62828;--blue:#1565c0;--orange:#c85a10;
-}
-:root[data-theme=dark]{
-  --bg:#0b0f0b;--bg1:#141914;--bg2:#1c221c;--bg3:#242c24;--line:#2c362c;
-  --text:#e2ead8;--sub:#6a826a;--green:#5cb85c;--green2:#3d7a3d;--gold:#e8c44a;
-  --red:#e05555;--blue:#5aabda;--orange:#e8884b;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  background:var(--bg);color:var(--text);
-  font-family:var(--sans);font-size:14px;line-height:1.75;
-  display:flex;min-height:100vh;
+  --bg:        #C8F0DC;
+  --card-bg:   linear-gradient(135deg, #D8F5E8 0%, #BEEBD4 100%);
+  --card-open: linear-gradient(135deg, #90DDB8 0%, #FFD0E0 100%);
+  --header-bg: linear-gradient(135deg, #7ECFAC 0%, #A8E6CF 50%, #F9C8D8 100%);
+  --footer-bg: linear-gradient(135deg, #C8F7E2 0%, #FFD8E8 100%);
+  --border:    #80D4AB;
+  --btn-green: linear-gradient(135deg, #52C788 0%, #2D9E5F 100%);
+  --btn-pink:  linear-gradient(135deg, #FFB7C5 0%, #FF7A9A 100%);
+  --text:      #1A4A35;
+  --sub:       #7FA898;
+  --plate-bg:  #2D5A45;
+  --plate-txt: #A8E6CF;
+  --shadow-card:  0 4px 16px rgba(0,150,80,.12), 0 1px 4px rgba(0,0,0,.06);
+  --shadow-green: 0 4px 14px rgba(45,158,95,.35);
+  --shadow-pink:  0 4px 14px rgba(255,122,154,.35);
+  --r-modal: 24px;
+  --r-card:  18px;
+  --r-pill:  50px;
+  --r-badge: 20px;
+  --font: 'M PLUS Rounded 1c', 'Hiragino Maru Gothic Pro', 'Yu Gothic', system-ui, sans-serif;
+  --mono: 'Share Tech Mono', monospace;
 }
 
-/* ── Sidebar ── */
-.sidebar{
-  position:fixed;top:0;left:0;
-  width:var(--sidebar);height:100vh;
-  background:var(--bg1);border-right:1px solid var(--line);
-  display:flex;flex-direction:column;
-  overflow-y:auto;z-index:50;flex-shrink:0;
-}
-.sidebar-brand{
-  padding:22px 20px 18px;
-  border-bottom:1px solid var(--line);
-  flex-shrink:0;
-}
-.sidebar-brand-name{
-  font-size:15px;font-weight:800;color:var(--green);letter-spacing:-.01em;
-}
-.sidebar-brand-ver{
-  font-size:11px;color:var(--sub);margin-top:3px;
-}
-.sidebar-addr{
-  margin-top:10px;
-  background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);
-  padding:8px 10px;
-}
-.sidebar-addr-label{font-size:10px;color:var(--sub);letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px}
-.sidebar-addr-val{font-family:var(--mono);font-size:11px;color:var(--gold);word-break:break-all;line-height:1.4}
-.sidebar-nav{flex:1;padding:12px 0}
-.sidebar-section{
-  font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--sub);padding:12px 20px 4px;
-}
-.sidebar-link{
-  display:flex;align-items:center;gap:10px;
-  padding:7px 20px;text-decoration:none;
-  color:var(--sub);font-size:13px;font-weight:500;
-  border-left:2px solid transparent;
-  transition:all .15s;
-}
-.sidebar-link:hover{color:var(--text);background:var(--bg2)}
-.sidebar-link.active{color:var(--green);border-left-color:var(--green);background:var(--bg2)}
-.sidebar-icon{font-size:14px;width:16px;text-align:center;flex-shrink:0}
-.sidebar-footer{
-  padding:14px 20px;border-top:1px solid var(--line);
-  font-size:11px;color:var(--sub);
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.75;
+  min-height: 100vh;
 }
 
-/* ── Main ── */
-main{
-  margin-left:var(--sidebar);flex:1;
-  max-width:min(760px, calc(100vw - var(--sidebar)));
-  padding:0 40px 100px;
+/* ── Top Nav ── */
+.topnav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--header-bg);
+  border-bottom: 2px solid var(--border);
+  padding: 0 24px;
+  display: flex; align-items: center; gap: 0;
+  box-shadow: 0 2px 12px rgba(0,150,80,.10);
+}
+.nav-brand {
+  font-weight: 800; font-size: 17px; color: var(--text);
+  padding: 14px 20px 14px 0;
+  white-space: nowrap; text-decoration: none;
+}
+.nav-brand span { opacity: .6; font-weight: 600; font-size: 12px; margin-left: 6px; }
+.nav-links {
+  display: flex; align-items: center; gap: 2px;
+  flex: 1; overflow-x: auto; padding: 10px 0;
+  scrollbar-width: none;
+}
+.nav-links::-webkit-scrollbar { display: none; }
+.nav-link {
+  text-decoration: none; color: var(--text);
+  font-weight: 700; font-size: 12px;
+  padding: 6px 14px; border-radius: var(--r-pill);
+  transition: all .18s; white-space: nowrap; opacity: .75;
+}
+.nav-link:hover, .nav-link.active {
+  background: rgba(255,255,255,.55);
+  opacity: 1; box-shadow: 0 2px 8px rgba(0,150,80,.12);
+}
+.nav-right { display: flex; gap: 8px; padding-left: 12px; flex-shrink: 0; }
+.nav-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 16px; border-radius: var(--r-pill);
+  font-family: var(--font); font-weight: 800; font-size: 12px;
+  color: #fff; border: none; cursor: pointer; text-decoration: none;
+  transition: all .18s; white-space: nowrap;
+}
+.nav-btn-green { background: var(--btn-green); box-shadow: var(--shadow-green); }
+.nav-btn-green:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(45,158,95,.45); color: #fff; }
+.nav-btn-pink  { background: var(--btn-pink);  box-shadow: var(--shadow-pink); }
+.nav-btn-pink:hover  { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(255,122,154,.45); color: #fff; }
+
+/* ── Page wrapper ── */
+.page {
+  max-width: 780px; margin: 0 auto;
+  padding: 40px 20px 100px;
+  display: flex; flex-direction: column; gap: 28px;
 }
 
-/* ── Sections ── */
-.page-section{
-  padding-top:48px;
-  border-top:1px solid var(--line);
-  margin-top:0;
+/* ── Section ── */
+.section-eyebrow {
+  font-size: 10px; font-weight: 800; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--sub); margin-bottom: 8px;
 }
-.page-section:first-child{border-top:none}
-
-.section-header{
-  margin-bottom:28px;
+.section-title {
+  font-size: 22px; font-weight: 800; letter-spacing: -.01em;
+  color: var(--text); text-wrap: balance; margin-bottom: 4px;
 }
-.section-eyebrow{
-  font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--sub);margin-bottom:6px;
-}
-.section-title{
-  font-size:22px;font-weight:800;letter-spacing:-.02em;
-  text-wrap:balance;
-}
-.section-desc{font-size:13px;color:var(--sub);margin-top:6px}
+.section-desc { font-size: 13px; color: var(--sub); margin-bottom: 16px; }
 
 /* ── Hero ── */
-.hero{
-  padding:56px 0 48px;
-  border-bottom:1px solid var(--line);
-  margin-bottom:0;
+.hero-card {
+  background: var(--header-bg);
+  border-radius: var(--r-modal);
+  border: 2px solid var(--border);
+  padding: 40px 36px 36px;
+  box-shadow: var(--shadow-card);
+  position: relative; overflow: hidden;
 }
-.hero-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--bg2);border:1px solid var(--green);border-radius:20px;
-  padding:4px 14px;font-size:11px;color:var(--green);font-weight:700;
-  letter-spacing:.04em;margin-bottom:20px;
+.hero-card::before {
+  content: '⛏'; font-size: 140px; line-height: 1;
+  position: absolute; right: -16px; bottom: -20px;
+  opacity: .10; pointer-events: none;
 }
-.hero h1{
-  font-size:clamp(28px,5vw,42px);font-weight:900;
-  letter-spacing:-.03em;line-height:1.1;margin-bottom:14px;
-  text-wrap:balance;
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(255,255,255,.55);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-pill);
+  padding: 5px 16px; font-size: 12px; font-weight: 800;
+  color: var(--text); margin-bottom: 18px;
 }
-.hero h1 em{font-style:normal;color:var(--gold)}
-.hero-sub{color:var(--sub);font-size:14px;max-width:460px;margin-bottom:28px}
-.hero-links{display:flex;gap:10px;flex-wrap:wrap}
-.hero-btn{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:10px 20px;border-radius:var(--r);font-size:13px;font-weight:700;
-  text-decoration:none;cursor:pointer;border:none;
-  transition:all .15s;
+.hero-tag-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #2D9E5F;
+  box-shadow: 0 0 6px rgba(45,158,95,.7);
+  animation: pulse 2s infinite;
 }
-.hero-btn-primary{background:var(--green);color:#fff}
-.hero-btn-primary:hover{background:var(--green2);color:#fff}
-.hero-btn-outline{background:transparent;border:1px solid var(--line);color:var(--text)}
-.hero-btn-outline:hover{border-color:var(--green);color:var(--green)}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.65;transform:scale(1.3)} }
+.hero h1 {
+  font-size: clamp(28px, 6vw, 42px); font-weight: 800;
+  letter-spacing: -.02em; line-height: 1.1;
+  color: var(--text); margin-bottom: 12px;
+  text-wrap: balance;
+}
+.hero h1 em { font-style: normal; color: #2D9E5F; }
+.hero-sub {
+  font-size: 14px; color: #3a6a50; max-width: 480px;
+  margin-bottom: 28px; line-height: 1.7;
+}
+.hero-addr {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: var(--plate-bg);
+  border-radius: var(--r-pill);
+  padding: 10px 20px; margin-bottom: 24px;
+}
+.hero-addr-label { font-size: 10px; color: #7FB89A; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.hero-addr-val { font-family: var(--mono); font-size: 15px; color: var(--plate-txt); letter-spacing: .04em; }
+.hero-addr-btn {
+  background: rgba(168,230,207,.2); border: 1.5px solid #A8E6CF;
+  border-radius: var(--r-pill); padding: 5px 14px;
+  font-size: 11px; font-weight: 800; color: var(--plate-txt);
+  cursor: pointer; font-family: var(--font); transition: all .15s;
+}
+.hero-addr-btn:hover { background: rgba(168,230,207,.4); }
+.hero-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.hero-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 11px 22px; border-radius: var(--r-pill);
+  font-family: var(--font); font-weight: 800; font-size: 13px;
+  border: none; cursor: pointer; text-decoration: none;
+  transition: all .18s;
+}
+.hero-btn-green { background: var(--btn-green); color: #fff; box-shadow: var(--shadow-green); }
+.hero-btn-green:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(45,158,95,.45); color:#fff; }
+.hero-btn-outline {
+  background: rgba(255,255,255,.55); color: var(--text);
+  border: 2px solid var(--border);
+}
+.hero-btn-outline:hover { background: rgba(255,255,255,.8); transform: translateY(-1px); color:var(--text); }
 
-/* ── Server info cards ── */
-.info-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:28px}
-.info-card{
-  background:var(--bg1);border:1px solid var(--line);border-radius:var(--r);
-  padding:14px 16px;
+/* ── Info cards grid ── */
+.info-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.info-card {
+  background: var(--card-bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-card);
+  padding: 16px 18px;
+  box-shadow: var(--shadow-card);
+  transition: all .18s;
 }
-.info-card-label{font-size:10px;color:var(--sub);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
-.info-card-val{font-size:15px;font-weight:700;color:var(--text)}
-.info-card-val.green{color:var(--green)}
-.info-card-val.gold{color:var(--gold)}
-.info-card-sub{font-size:11px;color:var(--sub);margin-top:2px}
+.info-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,150,80,.16); }
+.info-label { font-size: 10px; font-weight: 800; color: var(--sub); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 5px; }
+.info-val { font-size: 16px; font-weight: 800; color: var(--text); line-height: 1.2; }
+.info-val.mono { font-family: var(--mono); font-size: 12px; color: #2D9E5F; }
+.info-sub { font-size: 11px; color: var(--sub); margin-top: 3px; }
 
-/* ── Steps (guide) ── */
-.progress-row{
-  display:flex;align-items:center;gap:0;margin-bottom:28px;
-  overflow-x:auto;padding-bottom:4px;
+/* ── Progress bar ── */
+.progress-bar {
+  display: flex; align-items: center;
+  background: rgba(255,255,255,.5);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-pill);
+  padding: 8px 16px; gap: 0; overflow-x: auto;
+  scrollbar-width: none;
 }
-.prog-step{
-  display:flex;align-items:center;gap:6px;
-  padding:4px 10px;font-size:12px;color:var(--sub);
-  white-space:nowrap;cursor:pointer;flex-shrink:0;
+.progress-bar::-webkit-scrollbar { display: none; }
+.prog-item {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 12px; font-weight: 800; color: var(--sub);
+  white-space: nowrap; cursor: pointer; padding: 2px 8px;
+  border-radius: var(--r-pill); transition: all .15s;
 }
-.prog-dot{
-  width:22px;height:22px;border-radius:50%;
-  border:2px solid var(--line);
-  display:flex;align-items:center;justify-content:center;
-  font-size:10px;font-weight:700;transition:all .25s;flex-shrink:0;
+.prog-item:hover { background: rgba(255,255,255,.6); color: var(--text); }
+.prog-item.done { color: #2D9E5F; }
+.prog-dot {
+  width: 24px; height: 24px; border-radius: 50%;
+  border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 800; background: rgba(255,255,255,.6);
+  flex-shrink: 0; transition: all .2s;
 }
-.prog-step.done .prog-dot{background:var(--green);border-color:var(--green);color:#fff}
-.prog-step.done{color:var(--green)}
-.prog-conn{width:20px;height:2px;background:var(--line);flex-shrink:0;transition:background .25s}
-.prog-conn.done{background:var(--green)}
+.prog-item.done .prog-dot { background: #2D9E5F; border-color: #2D9E5F; color: #fff; }
+.prog-conn { width: 24px; height: 2px; background: var(--border); flex-shrink: 0; transition: background .2s; }
+.prog-conn.done { background: #2D9E5F; }
 
-.step-card{
-  border:1px solid var(--line);border-radius:var(--r);
-  overflow:hidden;margin-bottom:14px;transition:border-color .25s;
+/* ── Step cards ── */
+.step-card {
+  background: var(--card-bg);
+  border: 2px solid var(--border);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  overflow: hidden; margin-bottom: 12px;
+  transition: border-color .2s, box-shadow .2s;
 }
-.step-card.done{border-color:var(--green)}
-.step-head{
-  display:flex;align-items:center;gap:14px;
-  padding:16px 20px;background:var(--bg1);
-  cursor:pointer;user-select:none;
+.step-card.done { border-color: #52C788; box-shadow: 0 4px 16px rgba(82,199,136,.2), 0 1px 4px rgba(0,0,0,.06); }
+.step-head {
+  display: flex; align-items: center; gap: 14px;
+  padding: 18px 22px; cursor: pointer; user-select: none;
+  transition: background .15s;
 }
-.step-card.done .step-head{background:var(--bg2)}
-.step-n{
-  width:38px;height:38px;flex-shrink:0;border-radius:50%;
-  border:2px solid var(--line);
-  display:flex;align-items:center;justify-content:center;
-  font-size:15px;font-weight:800;color:var(--sub);transition:all .25s;
+.step-head:hover { background: rgba(255,255,255,.35); }
+.step-card.done .step-head { background: rgba(82,199,136,.08); }
+.step-n {
+  width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
+  border: 2.5px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 800; color: var(--sub);
+  background: rgba(255,255,255,.6);
+  transition: all .2s;
 }
-.step-card.done .step-n{background:var(--green);border-color:var(--green);color:#fff}
-.step-title-wrap{flex:1}
-.step-title{font-size:15px;font-weight:700}
-.step-meta{font-size:11px;color:var(--sub);margin-top:2px}
-.step-check{
-  width:28px;height:28px;border-radius:50%;
-  border:2px solid var(--line);background:none;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  color:transparent;font-size:14px;transition:all .2s;flex-shrink:0;
+.step-card.done .step-n { background: var(--btn-green); border-color: #52C788; color: #fff; box-shadow: var(--shadow-green); }
+.step-title-wrap { flex: 1; }
+.step-title { font-size: 15px; font-weight: 800; color: var(--text); }
+.step-meta { font-size: 11px; color: var(--sub); margin-top: 2px; }
+.step-check {
+  width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+  border: 2px solid var(--border); background: rgba(255,255,255,.6);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 14px; color: transparent;
+  transition: all .2s; font-family: var(--font);
 }
-.step-check:hover{border-color:var(--green);color:var(--green)}
-.step-card.done .step-check{background:var(--green);border-color:var(--green);color:#fff}
-.step-body{
-  padding:20px;background:var(--bg1);
-  display:flex;flex-direction:column;gap:14px;
-  border-top:1px solid var(--line);
+.step-check:hover { border-color: #52C788; color: #52C788; background: rgba(82,199,136,.1); transform: scale(1.05); }
+.step-card.done .step-check { background: var(--btn-green); border-color: #52C788; color: #fff; box-shadow: var(--shadow-green); }
+.step-body {
+  padding: 22px; border-top: 2px solid rgba(128,212,171,.35);
+  display: flex; flex-direction: column; gap: 14px;
+  background: rgba(255,255,255,.2);
 }
 
-/* ── Content parts ── */
-.prose{font-size:13.5px;line-height:1.8;color:var(--text)}
-.prose strong{color:var(--gold)}
-code{
-  font-family:var(--mono);background:var(--bg3);color:var(--gold);
-  padding:1px 6px;border-radius:3px;font-size:12px;border:1px solid var(--line);
-}
-.action{
-  background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
-}
-.action-label{
-  font-size:10px;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--sub);font-weight:700;padding:7px 14px 5px;
-  border-bottom:1px solid var(--line);
-}
-.action-row{display:flex;align-items:stretch}
-.action-val{
-  flex:1;font-family:var(--mono);font-size:13px;color:var(--gold);
-  padding:9px 14px;overflow-x:auto;white-space:nowrap;
-}
-.action-btn{
-  border:none;border-left:1px solid var(--line);background:none;
-  padding:0 16px;color:var(--sub);cursor:pointer;
-  font-size:12px;font-weight:600;transition:all .15s;white-space:nowrap;
-  font-family:var(--sans);
-}
-.action-btn:hover{color:var(--green);background:var(--bg3)}
-.warn-box,.tip-box,.note-box{
-  border-radius:4px;padding:11px 15px;font-size:13px;line-height:1.7;
-}
-.warn-box{background:#1e0b0b;border-left:3px solid var(--red)}
-:root[data-theme=light] .warn-box{background:#fff0f0}
-.tip-box{background:#0c1a2a;border-left:3px solid var(--blue)}
-:root[data-theme=light] .tip-box{background:#e8f4ff}
-.note-box{background:var(--bg2);border-left:3px solid var(--gold)}
-.box-label{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:4px}
-.warn-box .box-label{color:var(--red)}
-.tip-box .box-label{color:var(--blue)}
-.note-box .box-label{color:var(--gold)}
-.confirm{
-  background:var(--bg2);border:1px solid var(--green);border-radius:var(--r);
-  padding:11px 15px;display:flex;align-items:flex-start;gap:10px;font-size:13px;
-}
-.confirm-icon{
-  width:20px;height:20px;border-radius:50%;background:var(--green);
-  color:#fff;display:flex;align-items:center;justify-content:center;
-  font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px;
-}
-.confirm-text strong{color:var(--green)}
+/* ── Content components ── */
+.prose { font-size: 13.5px; line-height: 1.8; color: var(--text); }
+.prose strong { color: #2D6A4A; font-weight: 800; }
 
-/* UI Mockups */
-.mockup{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;font-size:13px}
-.mockup-bar{
-  background:var(--bg3);border-bottom:1px solid var(--line);
-  padding:7px 12px;display:flex;align-items:center;gap:7px;font-size:11px;color:var(--sub);
+code {
+  font-family: var(--mono); font-size: 12px;
+  background: var(--plate-bg); color: var(--plate-txt);
+  padding: 2px 8px; border-radius: var(--r-badge);
+  display: inline-block;
 }
-.mockup-dot{width:9px;height:9px;border-radius:50%;background:var(--line)}
-.mockup-body{background:var(--bg2);padding:14px 16px}
-.run-dialog{
-  background:#f0f0f0;border:1px solid #999;border-radius:4px;
-  font-family:"Yu Gothic UI","Segoe UI",sans-serif;font-size:12px;color:#000;
-  padding:16px;max-width:340px;box-shadow:4px 4px 10px rgba(0,0,0,.4);
+
+.copy-box {
+  background: rgba(255,255,255,.55);
+  border: 2px solid var(--border);
+  border-radius: var(--r-card);
+  overflow: hidden;
 }
-:root[data-theme=dark] .run-dialog,:root:not([data-theme=light]) .run-dialog{background:#2d2d2d;border-color:#555;color:#e0e0e0}
-.run-title{font-size:13px;font-weight:700;margin-bottom:10px}
-.run-label{font-size:11px;margin-bottom:4px;color:#666}
-:root[data-theme=dark] .run-label,:root:not([data-theme=light]) .run-label{color:#aaa}
-.run-input{
-  width:100%;border:1px solid #0078d4;background:#fff;
-  padding:4px 8px;font-family:var(--mono);font-size:12px;color:#000;
-  border-radius:2px;margin-bottom:10px;
+.copy-label {
+  font-size: 10px; font-weight: 800; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--sub);
+  padding: 7px 14px 5px; border-bottom: 1.5px solid rgba(128,212,171,.3);
+  background: rgba(255,255,255,.3);
 }
-:root[data-theme=dark] .run-input,:root:not([data-theme=light]) .run-input{background:#1a1a1a;color:#ffc107}
-.run-btns{display:flex;gap:6px;justify-content:flex-end}
-.run-btn{background:#e1e1e1;border:1px solid #adadad;border-radius:2px;padding:4px 16px;font-size:12px;cursor:pointer;color:#000}
-.run-btn.primary{background:#0078d4;border-color:#005a9e;color:#fff}
-.launcher-mock{background:#1a1a2e;border:1px solid #333;border-radius:var(--r);overflow:hidden}
-.launcher-top{background:#0d1117;padding:11px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #333}
-.launcher-logo{color:#5cb85c;font-weight:900;font-size:13px;letter-spacing:.06em}
-.launcher-body{padding:16px;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
-.launcher-profile{background:#0d1117;border:1px solid #333;border-radius:4px;padding:6px 12px;font-size:12px;color:#e0e0e0;display:flex;align-items:center;gap:8px}
-.launcher-profile-label{font-size:10px;color:#666;margin-bottom:2px}
-.launcher-profile-val{color:#5cb85c;font-weight:700;font-size:13px}
-.mc-title{background:#1a3a6e;border-radius:var(--r);padding:20px;text-align:center;font-family:var(--mono);position:relative;overflow:hidden}
-.mc-title::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 60%,#2a5a3a 0%,transparent 50%),radial-gradient(ellipse at 70% 40%,#1a4a6e 0%,transparent 50%)}
-.mc-title-logo{font-size:20px;font-weight:900;color:#fff;text-shadow:2px 2px 0 #555;margin-bottom:12px;position:relative;letter-spacing:.02em}
-.mc-btns{display:flex;flex-direction:column;gap:5px;max-width:220px;margin:0 auto;position:relative}
-.mc-btn{background:linear-gradient(to bottom,#c6c6c6,#8a8a8a);border:2px solid #555;border-bottom-color:#333;padding:6px 0;font-size:12px;color:#1a1a1a;font-weight:700;font-family:var(--mono);cursor:pointer}
-.mc-btn.highlight{background:linear-gradient(to bottom,#6abf60,#3d8a38);border-color:#2a6020;border-bottom-color:#1a4010;color:#fff;box-shadow:0 0 8px rgba(74,175,74,.5)}
+.copy-row { display: flex; align-items: stretch; }
+.copy-val {
+  flex: 1; font-family: var(--mono); font-size: 13px;
+  color: var(--text); padding: 10px 14px;
+  overflow-x: auto; white-space: nowrap;
+}
+.copy-btn {
+  border: none; border-left: 1.5px solid rgba(128,212,171,.3);
+  background: none; padding: 0 16px;
+  font-family: var(--font); font-size: 11px; font-weight: 800;
+  color: #2D9E5F; cursor: pointer; transition: all .15s; white-space: nowrap;
+}
+.copy-btn:hover { background: rgba(82,199,136,.15); }
+
+.warn-box {
+  background: linear-gradient(135deg, #FFE8EC 0%, #FFD8E4 100%);
+  border: 1.5px solid #FFB7C5; border-radius: var(--r-card);
+  padding: 13px 16px; font-size: 13px; line-height: 1.7; color: #7A2540;
+}
+.tip-box {
+  background: linear-gradient(135deg, #D8F5E8 0%, #C8EEF8 100%);
+  border: 1.5px solid #80D4AB; border-radius: var(--r-card);
+  padding: 13px 16px; font-size: 13px; line-height: 1.7; color: #1A4A35;
+}
+.box-label { display: block; font-size: 10px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 4px; }
+.warn-box .box-label { color: #C0345A; }
+.tip-box .box-label { color: #2D9E5F; }
+.ok-box {
+  background: linear-gradient(135deg, rgba(82,199,136,.15) 0%, rgba(168,230,207,.25) 100%);
+  border: 1.5px solid #52C788; border-radius: var(--r-card);
+  padding: 11px 16px; display: flex; align-items: flex-start; gap: 10px;
+  font-size: 13px; line-height: 1.7;
+}
+.ok-icon {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--btn-green); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 800; flex-shrink: 0; margin-top: 1px;
+  box-shadow: var(--shadow-green);
+}
+.ok-text strong { color: #2D6A4A; font-weight: 800; }
+
+/* ── Mockups ── */
+.mock-window {
+  border: 2px solid var(--border); border-radius: var(--r-card);
+  overflow: hidden;
+}
+.mock-bar {
+  background: linear-gradient(135deg, rgba(168,230,207,.4) 0%, rgba(249,200,216,.3) 100%);
+  border-bottom: 1.5px solid var(--border);
+  padding: 8px 14px; display: flex; align-items: center; gap: 7px;
+  font-size: 11px; color: var(--sub); font-weight: 700;
+}
+.mock-dot { width: 10px; height: 10px; border-radius: 50%; }
+.mock-dot.r { background: #FF7A9A; } .mock-dot.y { background: #FFD166; } .mock-dot.g { background: #52C788; }
+.mock-body { background: rgba(255,255,255,.5); padding: 18px; }
+
+.forge-dialog {
+  background: rgba(255,255,255,.85); border: 2px solid var(--border);
+  border-radius: var(--r-card); padding: 20px;
+  max-width: 320px; box-shadow: var(--shadow-card);
+  font-size: 13px;
+}
+.forge-title { font-weight: 800; font-size: 14px; margin-bottom: 14px; color: var(--text); }
+.forge-option {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 12px; border-radius: var(--r-pill);
+  font-weight: 700; margin-bottom: 6px; cursor: pointer;
+  transition: all .15s; font-size: 13px;
+}
+.forge-option.selected {
+  background: linear-gradient(135deg, rgba(82,199,136,.2) 0%, rgba(168,230,207,.3) 100%);
+  border: 1.5px solid #52C788; color: #2D6A4A;
+}
+.forge-option.dim { color: var(--sub); opacity: .5; }
+.forge-radio {
+  width: 18px; height: 18px; border-radius: 50%;
+  border: 2.5px solid var(--border); flex-shrink: 0;
+}
+.forge-option.selected .forge-radio {
+  background: #52C788; border-color: #52C788;
+  box-shadow: 0 0 0 3px rgba(82,199,136,.25);
+}
+.forge-btns { display: flex; gap: 8px; justify-content: flex-end; margin-top: 12px; }
+.forge-btn {
+  padding: 7px 20px; border-radius: var(--r-pill); border: none;
+  font-family: var(--font); font-weight: 800; font-size: 12px; cursor: pointer;
+  transition: all .15s;
+}
+.forge-btn.ok { background: var(--btn-green); color: #fff; box-shadow: var(--shadow-green); }
+.forge-btn.ok:hover { transform: translateY(-1px); }
+.forge-btn.cancel { background: rgba(255,255,255,.7); color: var(--sub); border: 1.5px solid var(--border); }
+
+.run-dialog {
+  background: rgba(255,255,255,.85); border: 2px solid var(--border);
+  border-radius: var(--r-card); padding: 18px; max-width: 340px;
+  box-shadow: var(--shadow-card); font-size: 13px;
+}
+.run-title { font-weight: 800; font-size: 13px; margin-bottom: 12px; color: var(--text); }
+.run-label { font-size: 11px; color: var(--sub); font-weight: 700; margin-bottom: 6px; }
+.run-input {
+  width: 100%; border: 2px solid var(--border);
+  background: rgba(255,255,255,.7); color: var(--text);
+  padding: 8px 14px; border-radius: var(--r-pill);
+  font-family: var(--mono); font-size: 12px; margin-bottom: 12px;
+  outline: none;
+}
+.run-input:focus { border-color: #52C788; box-shadow: 0 0 0 3px rgba(82,199,136,.2); }
+.run-btns { display: flex; gap: 8px; justify-content: flex-end; }
+.run-btn {
+  padding: 6px 18px; border-radius: var(--r-pill); border: none;
+  font-family: var(--font); font-weight: 800; font-size: 12px; cursor: pointer;
+}
+.run-btn.ok { background: var(--btn-green); color: #fff; box-shadow: var(--shadow-green); }
+.run-btn.cancel { background: rgba(255,255,255,.7); color: var(--sub); border: 1.5px solid var(--border); }
+
+.mc-screen {
+  background: linear-gradient(160deg, #1a3a2a 0%, #0d1f17 100%);
+  border-radius: var(--r-card); padding: 24px; text-align: center;
+}
+.mc-logo { font-size: 22px; font-weight: 800; color: #fff; text-shadow: 3px 3px 0 #555; margin-bottom: 18px; letter-spacing: .04em; font-family: var(--mono); }
+.mc-menu { display: flex; flex-direction: column; gap: 6px; max-width: 220px; margin: 0 auto; }
+.mc-btn-item {
+  background: linear-gradient(to bottom, #c0c0c0, #888); border: 2px solid #555;
+  border-bottom-color: #333; padding: 7px 0; font-family: var(--mono);
+  font-size: 12px; font-weight: 700; color: #1a1a1a; cursor: pointer;
+}
+.mc-btn-item.glow {
+  background: var(--btn-green);
+  border-color: #2a6020; border-bottom-color: #1a4010; color: #fff;
+  box-shadow: 0 0 12px rgba(82,199,136,.6);
+  animation: glow 2s ease-in-out infinite;
+}
+@keyframes glow { 0%,100%{box-shadow:0 0 12px rgba(82,199,136,.6)} 50%{box-shadow:0 0 20px rgba(82,199,136,.9)} }
+
+.addr-card {
+  background: rgba(255,255,255,.55); border: 2px solid var(--border);
+  border-radius: var(--r-card); padding: 16px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.addr-field { display: flex; flex-direction: column; gap: 5px; }
+.addr-field-label { font-size: 11px; color: var(--sub); font-weight: 800; }
+.addr-field-val {
+  background: rgba(255,255,255,.7); border: 2px solid var(--border);
+  border-radius: var(--r-pill); padding: 8px 14px;
+  font-family: var(--mono); font-size: 13px; color: var(--text);
+}
+.addr-field-val.highlight { border-color: #52C788; box-shadow: 0 0 0 3px rgba(82,199,136,.2); color: #2D6A4A; }
 
 /* ── Rules ── */
-.rule-list{display:flex;flex-direction:column;gap:10px}
-.rule-item{
-  display:flex;align-items:flex-start;gap:12px;
-  background:var(--bg1);border:1px solid var(--line);border-radius:var(--r);
-  padding:14px 16px;
+.rules-grid { display: flex; flex-direction: column; gap: 10px; }
+.rule-item {
+  background: var(--card-bg); border: 2px solid var(--border);
+  border-radius: var(--r-card); padding: 16px 18px;
+  display: flex; align-items: flex-start; gap: 14px;
+  box-shadow: var(--shadow-card); transition: all .18s;
 }
-.rule-icon{font-size:20px;flex-shrink:0;line-height:1.3}
-.rule-body{}
-.rule-title{font-weight:700;font-size:13.5px;margin-bottom:3px}
-.rule-desc{font-size:12.5px;color:var(--sub);line-height:1.6}
-.rule-item.warn{border-color:var(--red)}
-.rule-item.warn .rule-title{color:var(--red)}
+.rule-item:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,150,80,.16); }
+.rule-item.warn { border-color: #FFB7C5; }
+.rule-item.warn:hover { box-shadow: 0 8px 24px rgba(255,122,154,.2); }
+.rule-emoji { font-size: 26px; line-height: 1.2; flex-shrink: 0; }
+.rule-title { font-size: 14px; font-weight: 800; color: var(--text); margin-bottom: 3px; }
+.rule-item.warn .rule-title { color: #C0345A; }
+.rule-desc { font-size: 12.5px; color: var(--sub); line-height: 1.6; }
+
+/* ── MOD grid ── */
+.mod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px,1fr)); gap: 10px; }
+.mod-card {
+  background: var(--card-bg); border: 2px solid var(--border);
+  border-radius: var(--r-card); padding: 16px 18px;
+  box-shadow: var(--shadow-card); transition: all .18s;
+}
+.mod-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,150,80,.18); background: var(--card-open); }
+.mod-icon { font-size: 24px; margin-bottom: 7px; }
+.mod-name { font-size: 13px; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+.mod-desc { font-size: 12px; color: var(--sub); line-height: 1.5; }
 
 /* ── FAQ ── */
-.faq-list{display:flex;flex-direction:column;gap:8px}
-.faq-item{background:var(--bg1);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
-.faq-q{
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-  padding:13px 16px;cursor:pointer;user-select:none;font-size:13.5px;font-weight:600;
-  transition:background .15s;
+.faq-list { display: flex; flex-direction: column; gap: 8px; }
+.faq-item {
+  background: var(--card-bg); border: 2px solid var(--border);
+  border-radius: var(--r-card); overflow: hidden;
+  box-shadow: var(--shadow-card); transition: border-color .2s;
 }
-.faq-q:hover{background:var(--bg2)}
-.faq-q::after{content:'＋';color:var(--sub);font-weight:400;font-size:16px;flex-shrink:0;transition:transform .2s}
-.faq-item.open .faq-q::after{transform:rotate(45deg)}
-.faq-a{
-  display:none;padding:0 16px 14px;font-size:13px;color:var(--sub);line-height:1.7;
-  border-top:1px solid var(--line);padding-top:12px;
+.faq-item.open { border-color: #52C788; }
+.faq-q {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 15px 20px; cursor: pointer; user-select: none;
+  font-size: 13.5px; font-weight: 800; color: var(--text);
+  transition: background .15s;
 }
-.faq-item.open .faq-a{display:block}
-.faq-a strong{color:var(--text)}
-.faq-a code{font-size:12px}
+.faq-q:hover { background: rgba(255,255,255,.4); }
+.faq-toggle {
+  width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+  background: rgba(255,255,255,.6); border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; color: var(--sub); transition: all .2s; font-weight: 400;
+  line-height: 1;
+}
+.faq-item.open .faq-toggle { background: var(--btn-pink); border-color: #FF7A9A; color: #fff; transform: rotate(45deg); box-shadow: var(--shadow-pink); }
+.faq-a {
+  display: none; padding: 14px 20px 16px;
+  font-size: 13px; color: #3a6a50; line-height: 1.75;
+  border-top: 1.5px solid rgba(128,212,171,.3);
+  background: rgba(255,255,255,.2);
+}
+.faq-item.open .faq-a { display: block; }
+.faq-a strong { color: var(--text); font-weight: 800; }
 
 /* ── Changelog ── */
-.changelog{display:flex;flex-direction:column;gap:0}
-.cl-entry{display:flex;gap:20px;position:relative}
-.cl-entry::before{
-  content:'';position:absolute;left:52px;top:24px;bottom:-10px;
-  width:1px;background:var(--line);
+.changelog { display: flex; flex-direction: column; }
+.cl-entry { display: flex; gap: 16px; position: relative; }
+.cl-entry::before {
+  content: ''; position: absolute; left: 68px; top: 24px; bottom: -10px;
+  width: 2px; background: var(--border); border-radius: 1px;
 }
-.cl-entry:last-child::before{display:none}
-.cl-date{
-  font-size:11px;color:var(--sub);font-family:var(--mono);
-  white-space:nowrap;padding-top:14px;width:52px;flex-shrink:0;text-align:right;
+.cl-entry:last-child::before { display: none; }
+.cl-date { font-family: var(--mono); font-size: 11px; color: var(--sub); padding-top: 14px; width: 60px; flex-shrink: 0; text-align: right; }
+.cl-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--border); margin-top: 17px; flex-shrink: 0;
+  position: relative; z-index: 1;
 }
-.cl-dot{
-  width:10px;height:10px;border-radius:50%;background:var(--line);
-  margin-top:18px;flex-shrink:0;position:relative;z-index:1;
+.cl-dot.new { background: #52C788; box-shadow: 0 0 6px rgba(82,199,136,.6); }
+.cl-dot.pink { background: #FF7A9A; box-shadow: 0 0 6px rgba(255,122,154,.5); }
+.cl-content { flex: 1; padding: 10px 0 20px; }
+.cl-tag {
+  display: inline-block; font-size: 10px; font-weight: 800;
+  padding: 3px 10px; border-radius: var(--r-badge);
+  letter-spacing: .04em; margin-bottom: 5px;
 }
-.cl-dot.new{background:var(--green)}
-.cl-content{flex:1;padding:10px 0 18px}
-.cl-tag{
-  display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:3px;
-  letter-spacing:.04em;margin-bottom:5px;
-}
-.cl-tag.mod{background:#1a2e1a;color:var(--green);border:1px solid var(--green2)}
-:root[data-theme=light] .cl-tag.mod{background:#e8f5e8;border-color:#a5d6a7}
-.cl-tag.fix{background:#1a1a2e;color:var(--blue);border:1px solid #2a3a6a}
-:root[data-theme=light] .cl-tag.fix{background:#e8f0ff;border-color:#90caf9}
-.cl-tag.feature{background:#2e2010;color:var(--gold);border:1px solid #6a4a10}
-:root[data-theme=light] .cl-tag.feature{background:#fff8e1;border-color:#ffe082}
-.cl-body{font-size:13px;color:var(--sub);line-height:1.6}
-.cl-body strong{color:var(--text)}
+.cl-tag.mod { background: linear-gradient(135deg, #D8F5E8, #BEEBD4); color: #2D6A4A; border: 1.5px solid #80D4AB; }
+.cl-tag.fix { background: linear-gradient(135deg, #D8EEF8, #C8E4F0); color: #1A3A5A; border: 1.5px solid #80B4D4; }
+.cl-tag.feature { background: linear-gradient(135deg, #FFE8EC, #FFD8E4); color: #7A2540; border: 1.5px solid #FFB7C5; }
+.cl-body { font-size: 13px; color: var(--sub); line-height: 1.6; }
+.cl-body strong { color: var(--text); font-weight: 800; }
 
-/* ── Completion ── */
-.done-banner{
-  background:var(--bg2);border:1px solid var(--green);border-radius:var(--r);
-  padding:24px;text-align:center;margin-top:16px;display:none;
+/* ── Completion banner ── */
+.done-banner {
+  background: var(--card-open);
+  border: 2px solid #52C788; border-radius: var(--r-modal);
+  padding: 32px; text-align: center;
+  display: none; box-shadow: 0 4px 20px rgba(82,199,136,.25);
 }
-.done-banner.show{display:block}
-.done-banner h2{color:var(--green);font-size:20px;margin-bottom:6px}
-.done-banner p{color:var(--sub);font-size:13px}
+.done-banner.show { display: block; animation: popIn .35s cubic-bezier(.34,1.56,.64,1); }
+@keyframes popIn { from{transform:scale(.9);opacity:0} to{transform:scale(1);opacity:1} }
+.done-banner h2 { font-size: 22px; font-weight: 800; color: #2D6A4A; margin-bottom: 8px; }
+.done-banner p { color: var(--sub); font-size: 13px; }
 
-/* ── Misc ── */
-.divider{border:none;border-top:1px solid var(--line);margin:0}
-.footer{text-align:center;font-size:12px;color:var(--sub);padding:32px 0 16px}
+/* ── Card wrapper ── */
+.card {
+  background: var(--card-bg);
+  border: 2px solid var(--border);
+  border-radius: var(--r-modal);
+  padding: 28px 30px;
+  box-shadow: var(--shadow-card);
+}
 
-@media(max-width:680px){
-  .sidebar{display:none}
-  main{margin-left:0;padding:0 16px 80px}
-  .info-grid{grid-template-columns:1fr 1fr}
+/* ── Footer ── */
+footer {
+  background: var(--footer-bg);
+  border: 2px solid var(--border);
+  border-radius: var(--r-modal);
+  padding: 24px; text-align: center;
+  box-shadow: var(--shadow-card);
+}
+footer .f-logo { font-size: 16px; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+footer p { font-size: 12px; color: var(--sub); }
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .topnav { padding: 0 14px; }
+  .nav-brand { padding-right: 10px; font-size: 15px; }
+  .nav-links { display: none; }
+  .hero-card { padding: 28px 20px 28px; }
+  .hero h1 { font-size: 28px; }
+  .info-grid { grid-template-columns: 1fr 1fr; }
+  .card { padding: 20px; }
+  .page { padding: 20px 14px 80px; gap: 20px; }
+  .hero-addr { flex-wrap: wrap; }
 }
 </style>
+</head>
+<body>
 
-<!-- ── SIDEBAR ── -->
-<div class="sidebar">
-  <div class="sidebar-brand">
-    <div class="sidebar-brand-name">⛏ Tsukapyon MC</div>
-    <div class="sidebar-brand-ver">Forge 1.20.1 · 47.4.10</div>
-    <div class="sidebar-addr">
-      <div class="sidebar-addr-label">サーバーアドレス</div>
-      <div class="sidebar-addr-val">sign-stress.gl.joinmc.link</div>
+<!-- ── Top Navigation ── -->
+<nav class="topnav">
+  <a href="#top" class="nav-brand">⛏ Tsukapyon MC <span>1.20.1</span></a>
+  <div class="nav-links">
+    <a href="#server-info" class="nav-link">📡 サーバー情報</a>
+    <a href="#guide"       class="nav-link">📋 接続ガイド</a>
+    <a href="#rules"       class="nav-link">📜 ルール</a>
+    <a href="#mods"        class="nav-link">🧩 MOD</a>
+    <a href="#faq"         class="nav-link">❓ FAQ</a>
+    <a href="#changelog"   class="nav-link">📝 更新履歴</a>
+  </div>
+  <div class="nav-right">
+    <a href="mods.html" class="nav-btn nav-btn-pink">🧩 MOD一覧</a>
+    <a href="https://github.com/bartsukasa/tsukapyon-mc/releases/download/v1.0/mods.zip"
+       class="nav-btn nav-btn-green">⬇ mods.zip</a>
+  </div>
+</nav>
+
+<!-- ── Page ── -->
+<div class="page" id="top">
+
+  <!-- Hero -->
+  <div class="hero-card">
+    <div class="hero-tag">
+      <span class="hero-tag-dot"></span>
+      サーバー稼働中
     </div>
-  </div>
-  <nav class="sidebar-nav">
-    <div class="sidebar-section">はじめに</div>
-    <a href="#top" class="sidebar-link active"><span class="sidebar-icon">🏠</span>トップ</a>
-    <a href="#server-info" class="sidebar-link"><span class="sidebar-icon">📡</span>サーバー情報</a>
-
-    <div class="sidebar-section">参加方法</div>
-    <a href="#guide" class="sidebar-link"><span class="sidebar-icon">📋</span>接続ガイド</a>
-
-    <div class="sidebar-section">サーバーについて</div>
-    <a href="#rules" class="sidebar-link"><span class="sidebar-icon">📜</span>ルール</a>
-    <a href="#mods" class="sidebar-link"><span class="sidebar-icon">🧩</span>MOD紹介</a>
-    <a href="#faq" class="sidebar-link"><span class="sidebar-icon">❓</span>よくある質問</a>
-    <a href="#changelog" class="sidebar-link"><span class="sidebar-icon">📝</span>更新履歴</a>
-  </nav>
-  <div class="sidebar-footer">
-    困ったら管理者（つかぴょん）まで
-  </div>
-</div>
-
-<!-- ── MAIN ── -->
-<main>
-
-<!-- Hero -->
-<section id="top" class="page-section" style="border-top:none;padding-top:52px">
-  <div class="hero">
-    <div class="hero-badge">🟢 サーバー稼働中</div>
-    <h1><em>Tsukapyon MC</em><br>参加ガイド</h1>
-    <p class="hero-sub">Forgeと71個のMODで遊ぶSMPサーバー。黄昏の森・スキルツリー・家具・料理・RPG要素が盛りだくさん。</p>
-    <div class="hero-links">
-      <a href="#guide" class="hero-btn hero-btn-primary">接続ガイドを見る →</a>
+    <h1 class="hero"><em>Tsukapyon MC</em><br>参加ガイド ✨</h1>
+    <p class="hero-sub">黄昏の森・スキルツリー・家具・料理・RPG要素が盛りだくさんな<br>Forge 1.20.1 SMPサーバーです！</p>
+    <div class="hero-addr">
+      <div>
+        <div class="hero-addr-label">サーバーアドレス</div>
+        <div class="hero-addr-val">sign-stress.gl.joinmc.link</div>
+      </div>
+      <button class="hero-addr-btn" onclick="cp(this,'sign-stress.gl.joinmc.link')">コピー</button>
+    </div>
+    <div class="hero-btns">
+      <a href="#guide" class="hero-btn hero-btn-green">📋 接続ガイドを見る</a>
       <a href="mods.html" class="hero-btn hero-btn-outline">🧩 MOD一覧</a>
-      <a href="https://github.com/bartsukasa/tsukapyon-mc/releases/download/v1.0/mods.zip" class="hero-btn hero-btn-outline">⬇ mods.zip DL</a>
+      <a href="https://github.com/bartsukasa/tsukapyon-mc/releases/download/v1.0/mods.zip"
+         class="hero-btn hero-btn-outline">⬇ mods.zip DL</a>
     </div>
   </div>
-</section>
 
-<!-- Server Info -->
-<section id="server-info" class="page-section">
-  <div class="section-header">
-    <div class="section-eyebrow">Server</div>
+  <!-- Server Info -->
+  <div id="server-info">
+    <div class="section-eyebrow">Server Info</div>
     <div class="section-title">サーバー情報</div>
     <div class="section-desc">接続に必要な情報をまとめました。</div>
-  </div>
-
-  <div class="info-grid">
-    <div class="info-card">
-      <div class="info-card-label">サーバーアドレス</div>
-      <div class="info-card-val" style="font-family:var(--mono);font-size:12px;color:var(--gold)">sign-stress.gl.joinmc.link</div>
-      <div class="info-card-sub">ポート番号不要</div>
-    </div>
-    <div class="info-card">
-      <div class="info-card-label">Forgeバージョン</div>
-      <div class="info-card-val gold">47.4.10</div>
-      <div class="info-card-sub">Minecraft 1.20.1</div>
-    </div>
-    <div class="info-card">
-      <div class="info-card-label">難易度</div>
-      <div class="info-card-val">Normal</div>
-      <div class="info-card-sub">PvP あり</div>
-    </div>
-    <div class="info-card">
-      <div class="info-card-label">最大人数</div>
-      <div class="info-card-val">20人</div>
-      <div class="info-card-sub">フライト許可</div>
-    </div>
-    <div class="info-card">
-      <div class="info-card-label">導入MOD数</div>
-      <div class="info-card-val green">71個</div>
-      <div class="info-card-sub"><a href="mods.html" style="color:var(--blue)">一覧を見る →</a></div>
-    </div>
-    <div class="info-card">
-      <div class="info-card-label">定期再起動</div>
-      <div class="info-card-val" style="font-size:12px">0・4・8・12・16・20時</div>
-      <div class="info-card-sub">30分前から通知あり</div>
-    </div>
-  </div>
-
-  <div class="action" style="margin-bottom:0">
-    <div class="action-label">サーバーアドレス（コピー用）</div>
-    <div class="action-row">
-      <div class="action-val">sign-stress.gl.joinmc.link</div>
-      <button class="action-btn" onclick="cp(this,'sign-stress.gl.joinmc.link')">コピー</button>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-label">サーバーアドレス</div>
+        <div class="info-val mono">sign-stress<br>.gl.joinmc.link</div>
+        <div class="info-sub">ポート番号不要</div>
+      </div>
+      <div class="info-card">
+        <div class="info-label">Forgeバージョン</div>
+        <div class="info-val">47.4.10</div>
+        <div class="info-sub">Minecraft 1.20.1</div>
+      </div>
+      <div class="info-card">
+        <div class="info-label">難易度 / PvP</div>
+        <div class="info-val">Normal</div>
+        <div class="info-sub">PvP あり・フライト許可</div>
+      </div>
+      <div class="info-card">
+        <div class="info-label">最大人数</div>
+        <div class="info-val">20人</div>
+        <div class="info-sub">ホワイトリストなし</div>
+      </div>
+      <div class="info-card">
+        <div class="info-label">導入MOD数</div>
+        <div class="info-val" style="color:#2D9E5F">71個</div>
+        <div class="info-sub"><a href="mods.html" style="color:#2D9E5F;font-weight:800">一覧を見る →</a></div>
+      </div>
+      <div class="info-card">
+        <div class="info-label">定期再起動</div>
+        <div class="info-val" style="font-size:13px">0・4・8・12<br>16・20時</div>
+        <div class="info-sub">30分前から通知あり</div>
+      </div>
     </div>
   </div>
-</section>
 
-<!-- Guide -->
-<section id="guide" class="page-section">
-  <div class="section-header">
+  <!-- Guide -->
+  <div id="guide">
     <div class="section-eyebrow">Setup Guide</div>
     <div class="section-title">接続ガイド</div>
-    <div class="section-desc">上から順に進めてください。各ステップを完了したらチェックを入れましょう。</div>
-  </div>
+    <div class="section-desc">上から順に進めてください。完了したらチェックを入れましょう！</div>
 
-  <div class="progress-row">
-    <div class="prog-step" onclick="scrollToStep(1)"><div class="prog-dot" id="pd1">1</div><span>Java版</span></div>
-    <div class="prog-conn" id="pc1"></div>
-    <div class="prog-step" onclick="scrollToStep(2)"><div class="prog-dot" id="pd2">2</div><span>Forge</span></div>
-    <div class="prog-conn" id="pc2"></div>
-    <div class="prog-step" onclick="scrollToStep(3)"><div class="prog-dot" id="pd3">3</div><span>MOD</span></div>
-    <div class="prog-conn" id="pc3"></div>
-    <div class="prog-step" onclick="scrollToStep(4)"><div class="prog-dot" id="pd4">4</div><span>起動</span></div>
-    <div class="prog-conn" id="pc4"></div>
-    <div class="prog-step" onclick="scrollToStep(5)"><div class="prog-dot" id="pd5">5</div><span>接続</span></div>
-  </div>
-
-  <!-- Step 1 -->
-  <div class="step-card" id="step1">
-    <div class="step-head" onclick="toggle(1)">
-      <div class="step-n" id="sn1">1</div>
-      <div class="step-title-wrap">
-        <div class="step-title">Java版 Minecraft を用意する</div>
-        <div class="step-meta">PC専用。Switch・スマホ版（統合版）では参加できません</div>
-      </div>
-      <button class="step-check" id="sc1" onclick="event.stopPropagation();check(1)">✓</button>
+    <div class="progress-bar" style="margin-bottom:20px">
+      <div class="prog-item" onclick="document.getElementById('step1').scrollIntoView({behavior:'smooth'})"><div class="prog-dot" id="pd1">1</div>Java版</div>
+      <div class="prog-conn" id="pc1"></div>
+      <div class="prog-item" onclick="document.getElementById('step2').scrollIntoView({behavior:'smooth'})"><div class="prog-dot" id="pd2">2</div>Forge</div>
+      <div class="prog-conn" id="pc2"></div>
+      <div class="prog-item" onclick="document.getElementById('step3').scrollIntoView({behavior:'smooth'})"><div class="prog-dot" id="pd3">3</div>MOD</div>
+      <div class="prog-conn" id="pc3"></div>
+      <div class="prog-item" onclick="document.getElementById('step4').scrollIntoView({behavior:'smooth'})"><div class="prog-dot" id="pd4">4</div>起動</div>
+      <div class="prog-conn" id="pc4"></div>
+      <div class="prog-item" onclick="document.getElementById('step5').scrollIntoView({behavior:'smooth'})"><div class="prog-dot" id="pd5">5</div>接続</div>
     </div>
-    <div class="step-body" id="sb1">
-      <p class="prose">このサーバーは <strong>Java版（PC版）</strong> 専用です。Minecraft Launcherがまだ入っていない方は下記から入手してください。</p>
-      <div class="action">
-        <div class="action-label">公式サイト</div>
-        <div class="action-row">
-          <div class="action-val">https://www.minecraft.net/ja-jp/download</div>
-          <button class="action-btn" onclick="cp(this,'https://www.minecraft.net/ja-jp/download')">コピー</button>
+
+    <!-- Step 1 -->
+    <div class="step-card" id="step1">
+      <div class="step-head" onclick="toggleStep(1)">
+        <div class="step-n" id="sn1">1</div>
+        <div class="step-title-wrap">
+          <div class="step-title">Java版 Minecraft を用意する</div>
+          <div class="step-meta">PC専用。Switch・スマホ版では参加できません</div>
         </div>
+        <button class="step-check" id="sc1" onclick="event.stopPropagation();check(1)" title="完了にする">✓</button>
       </div>
-      <div class="warn-box">
-        <span class="box-label">❌ これでは参加できません</span>
-        Nintendo Switch版・スマートフォン版・Xbox版（統合版/Bedrock Edition）はこのサーバーに接続できません。必ず <strong>PCのJava版</strong> を使ってください。
-      </div>
-      <div class="confirm">
-        <div class="confirm-icon">✓</div>
-        <div class="confirm-text"><strong>確認：</strong> Minecraft Launcherが起動してタイトル画面が表示されればOK。</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Step 2 -->
-  <div class="step-card" id="step2">
-    <div class="step-head" onclick="toggle(2)">
-      <div class="step-n" id="sn2">2</div>
-      <div class="step-title-wrap">
-        <div class="step-title">Forge をインストールする</div>
-        <div class="step-meta">バージョンは必ず 1.20.1–47.4.10（違うと接続不可）</div>
-      </div>
-      <button class="step-check" id="sc2" onclick="event.stopPropagation();check(2)">✓</button>
-    </div>
-    <div class="step-body" id="sb2">
-      <p class="prose">MODを動かすための「Forge」をインストールします。<strong>バージョンが1文字でも違うと接続できない</strong>ので、必ず以下のリンクを使ってください。</p>
-      <div class="action">
-        <div class="action-label">① インストーラーをダウンロード</div>
-        <div class="action-row">
-          <div class="action-val">forge-1.20.1-47.4.10-installer.jar（5.8 MB）</div>
-          <button class="action-btn" onclick="window.open('https://github.com/bartsukasa/tsukapyon-mc/releases/download/v1.0/forge-1.20.1-47.4.10-installer.jar')">DL</button>
-        </div>
-      </div>
-      <p class="prose">② ダウンロードした <code>.jar</code> をダブルクリックして開き、<strong>「Install client」</strong> を選んでOKをクリック。</p>
-      <div class="mockup">
-        <div class="mockup-bar"><div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div><span>Forge Installer</span></div>
-        <div class="mockup-body" style="display:flex;flex-direction:column;gap:10px;align-items:center;padding:18px">
-          <div style="font-size:12px;color:var(--sub)">インストール先を選んでください</div>
-          <div style="display:flex;flex-direction:column;gap:6px;width:100%;max-width:260px">
-            <label style="display:flex;align-items:center;gap:8px;font-size:13px">
-              <span style="width:15px;height:15px;border-radius:50%;border:2px solid var(--green);background:var(--green);display:inline-block;flex-shrink:0"></span>
-              <strong style="color:var(--green)">Install client</strong>
-              <span style="color:var(--sub);font-size:11px">← これを選ぶ</span>
-            </label>
-            <label style="display:flex;align-items:center;gap:8px;font-size:13px;opacity:.45">
-              <span style="width:15px;height:15px;border-radius:50%;border:2px solid var(--line);display:inline-block;flex-shrink:0"></span>Install server
-            </label>
-          </div>
-          <div style="display:flex;gap:8px;margin-top:4px">
-            <button style="background:var(--green);color:#fff;border:none;padding:6px 18px;border-radius:3px;font-weight:700">OK</button>
-            <button style="background:var(--bg3);color:var(--sub);border:1px solid var(--line);padding:6px 18px;border-radius:3px">Cancel</button>
+      <div class="step-body" id="sb1" style="display:none">
+        <p class="prose">このサーバーは <strong>Java版（PC版）</strong> 専用です。Minecraft Launcherがまだ入っていない方は公式サイトから入手してください。</p>
+        <div class="copy-box">
+          <div class="copy-label">公式ダウンロード</div>
+          <div class="copy-row">
+            <div class="copy-val">https://www.minecraft.net/ja-jp/download</div>
+            <button class="copy-btn" onclick="cp(this,'https://www.minecraft.net/ja-jp/download')">コピー</button>
           </div>
         </div>
-      </div>
-      <div class="warn-box">
-        <span class="box-label">❌ よくあるミス</span>
-        Forgeの公式サイトの「Recommended」「Latest」ボタンを押すと<strong>別バージョン</strong>がインストールされます。必ず上記のリンクから <strong>47.4.10</strong> を直接ダウンロードしてください。
-      </div>
-      <div class="tip-box">
-        <span class="box-label">💡 Javaがない場合</span>
-        「Javaが見つかりません」エラーが出た場合は <a href="https://adoptium.net/temurin/releases/?version=21" style="color:var(--blue)">Java 21（Temurin）をインストール</a> してから再試行してください。
-      </div>
-      <div class="confirm">
-        <div class="confirm-icon">✓</div>
-        <div class="confirm-text"><strong>確認：</strong>「Successfully installed client profile forge for version 1.20.1-47.4.10」と表示されたら完了。</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Step 3 -->
-  <div class="step-card" id="step3">
-    <div class="step-head" onclick="toggle(3)">
-      <div class="step-n" id="sn3">3</div>
-      <div class="step-title-wrap">
-        <div class="step-title">MOD を全部インストールする</div>
-        <div class="step-meta">mods.zip をダウンロードして解凍します</div>
-      </div>
-      <button class="step-check" id="sc3" onclick="event.stopPropagation();check(3)">✓</button>
-    </div>
-    <div class="step-body" id="sb3">
-      <div class="action">
-        <div class="action-label">① mods.zip をダウンロード</div>
-        <div class="action-row">
-          <div class="action-val">mods.zip（約103 MB・71個入り）</div>
-          <button class="action-btn" onclick="window.open('https://github.com/bartsukasa/tsukapyon-mc/releases/download/v1.0/mods.zip')">DL</button>
+        <div class="warn-box">
+          <span class="box-label">❌ これでは参加できません</span>
+          Nintendo Switch版・スマートフォン版・Xbox版（統合版/Bedrock Edition）はこのサーバーに接続できません。必ず <strong>PCのJava版</strong> を使ってください。
         </div>
-      </div>
-      <p class="prose"><strong>② modsフォルダを開く</strong></p>
-      <p class="prose">キーボードの <code>Windowsキー + R</code> を押して「ファイル名を指定して実行」を開き、以下を貼り付けてEnter。</p>
-      <div class="action">
-        <div class="action-label">「ファイル名を指定して実行」に入力</div>
-        <div class="action-row">
-          <div class="action-val">%AppData%\.minecraft\mods</div>
-          <button class="action-btn" onclick="cp(this,'%AppData%\\.minecraft\\mods')">コピー</button>
-        </div>
-      </div>
-      <div class="run-dialog" style="margin:0 0 0 12px">
-        <div class="run-title">ファイル名を指定して実行</div>
-        <div class="run-label">名前(O):</div>
-        <div class="run-input">%AppData%\.minecraft\mods</div>
-        <div class="run-btns"><button class="run-btn primary">OK</button><button class="run-btn">キャンセル</button></div>
-      </div>
-      <p class="prose"><strong>③ mods.zip を解凍してコピー</strong></p>
-      <p class="prose">ダウンロードした <code>mods.zip</code> を右クリック→「<strong>すべて展開</strong>」で解凍。解凍してできたフォルダの中の <strong>すべての .jar ファイル</strong> を、開いたmodsフォルダにドラッグ＆ドロップでコピーしてください。</p>
-      <div class="warn-box">
-        <span class="box-label">❌ よくあるミス</span>
-        <strong>zip ファイルのまま入れない</strong>こと。必ず解凍してから .jar ファイルをコピーしてください。<br>
-        また <strong>一部のファイルだけ入れても動きません</strong>。71個すべてが必要です。
-      </div>
-      <div class="confirm">
-        <div class="confirm-icon">✓</div>
-        <div class="confirm-text"><strong>確認：</strong> modsフォルダに <strong>.jar ファイルが70個以上</strong> 入っていることを確認してください。</div>
+        <div class="ok-box"><div class="ok-icon">✓</div><div class="ok-text"><strong>確認：</strong> Minecraft Launcherを起動してタイトル画面が表示されればOK！</div></div>
       </div>
     </div>
-  </div>
 
-  <!-- Step 4 -->
-  <div class="step-card" id="step4">
-    <div class="step-head" onclick="toggle(4)">
-      <div class="step-n" id="sn4">4</div>
-      <div class="step-title-wrap">
-        <div class="step-title">Forgeプロファイルで起動する</div>
-        <div class="step-meta">「forge-1.20.1」を選ぶのがポイント</div>
+    <!-- Step 2 -->
+    <div class="step-card" id="step2">
+      <div class="step-head" onclick="toggleStep(2)">
+        <div class="step-n" id="sn2">2</div>
+        <div class="step-title-wrap">
+          <div class="step-title">Forge をインストールする</div>
+          <div class="step-meta">バージョンは必ず 1.20.1–47.4.10（違うと接続不可）</div>
+        </div>
+        <button class="step-check" id="sc2" onclick="event.stopPropagation();check(2)" title="完了にする">✓</button>
       </div>
-      <button class="step-check" id="sc4" onclick="event.stopPropagation();check(4)">✓</button>
-    </div>
-    <div class="step-body" id="sb4">
-      <p class="prose">Minecraft Launcherを開き、<strong>左下のプロファイル欄</strong>から「<strong style="color:var(--green)">forge-1.20.1</strong>」を選んでPLAYをクリック。</p>
-      <div class="launcher-mock">
-        <div class="launcher-top"><div class="launcher-logo">MINECRAFT LAUNCHER</div></div>
-        <div class="launcher-body">
-          <div class="launcher-profile">
-            <div><div class="launcher-profile-label">プロファイル</div><div class="launcher-profile-val">forge-1.20.1 ← ここを選ぶ</div></div>
-            <span style="color:#666">▼</span>
+      <div class="step-body" id="sb2" style="display:none">
+        <p class="prose">MODを動かすための「Forge」をインストールします。<strong>バージョンが1文字でも違うと接続できない</strong>ので、必ず以下のリンクを使ってください！</p>
+        <div class="copy-box">
+          <div class="copy-label">① インストーラーをダウンロード</div>
+          <div class="copy-row">
+            <div class="copy-val">forge-1.20.1-47.4.10-installer.jar（5.8 MB）</div>
+            <button class="copy-btn" onclick="window.open('https://github.com/bartsukasa/tsukapyon-mc/releases/download/v1.0/forge-1.20.1-47.4.10-installer.jar')">DL</button>
           </div>
-          <div style="background:#5cb85c;color:#fff;border-radius:4px;padding:10px 28px;font-weight:800;font-size:13px">PLAY</div>
         </div>
-      </div>
-      <p class="prose" style="margin-top:4px">起動したら、タイトル画面に <strong style="color:var(--green)">「Mods」ボタン</strong> が表示されていることを確認。</p>
-      <div class="mc-title">
-        <div class="mc-title-logo">MINECRAFT</div>
-        <div class="mc-btns">
-          <div class="mc-btn">シングルプレイ</div>
-          <div class="mc-btn">マルチプレイ</div>
-          <div class="mc-btn highlight">Mods ← これが出ていればOK！</div>
-          <div class="mc-btn">設定</div>
+        <p class="prose">② ダウンロードした <code>.jar</code> をダブルクリック。<strong>「Install client」</strong> を選んで OK！</p>
+        <div class="forge-dialog">
+          <div class="forge-title">Forge Installer</div>
+          <div class="forge-option selected">
+            <div class="forge-radio"></div>
+            <span><strong>Install client</strong></span>
+            <span style="font-size:11px;color:#2D9E5F;margin-left:auto">← これを選ぶ！</span>
+          </div>
+          <div class="forge-option dim">
+            <div class="forge-radio"></div>
+            <span>Install server</span>
+          </div>
+          <div class="forge-btns">
+            <button class="forge-btn cancel">Cancel</button>
+            <button class="forge-btn ok">OK</button>
+          </div>
         </div>
+        <div class="warn-box">
+          <span class="box-label">❌ よくあるミス</span>
+          Forgeの公式サイトの「Recommended」「Latest」ボタンを押すと<strong>別バージョン</strong>がインストールされます。必ず上記のリンクから <strong>47.4.10</strong> を直接ダウンロードしてください！
+        </div>
+        <div class="tip-box">
+          <span class="box-label">💡 Javaがない場合</span>
+          「Javaが見つかりません」エラーが出た場合は <strong>Java 21（Temurin）</strong> をインストールしてから再試行してください。
+        </div>
+        <div class="ok-box"><div class="ok-icon">✓</div><div class="ok-text"><strong>確認：</strong>「Successfully installed client profile forge for version 1.20.1-47.4.10」と表示されたら完了！</div></div>
       </div>
-      <div class="warn-box">
-        <span class="box-label">❌ よくあるミス</span>
-        「1.20.1」（バニラ）プロファイルで起動するとModsボタンが出ません。<strong>かならず「forge-1.20.1」</strong> を選んでください。
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step-card" id="step3">
+      <div class="step-head" onclick="toggleStep(3)">
+        <div class="step-n" id="sn3">3</div>
+        <div class="step-title-wrap">
+          <div class="step-title">MOD を全部インストールする</div>
+          <div class="step-meta">mods.zip をダウンロードして解凍します</div>
+        </div>
+        <button class="step-check" id="sc3" onclick="event.stopPropagation();check(3)" title="完了にする">✓</button>
       </div>
-      <div class="confirm">
-        <div class="confirm-icon">✓</div>
-        <div class="confirm-text"><strong>確認：</strong> タイトル画面に「Mods」ボタンが表示されていればOK。</div>
+      <div class="step-body" id="sb3" style="display:none">
+        <div class="copy-box">
+          <div class="copy-label">① mods.zip をダウンロード</div>
+          <div class="copy-row">
+            <div class="copy-val">mods.zip（約103 MB・71個入り）</div>
+            <button class="copy-btn" onclick="window.open('https://github.com/bartsukasa/tsukapyon-mc/releases/download/v1.0/mods.zip')">DL</button>
+          </div>
+        </div>
+        <p class="prose"><strong>② modsフォルダを開く</strong><br>キーボードの <code>Windowsキー + R</code> を押して、以下を貼り付けてEnterキー！</p>
+        <div class="copy-box">
+          <div class="copy-label">「ファイル名を指定して実行」に入力</div>
+          <div class="copy-row">
+            <div class="copy-val">%AppData%\.minecraft\mods</div>
+            <button class="copy-btn" onclick="cp(this,'%AppData%\\.minecraft\\mods')">コピー</button>
+          </div>
+        </div>
+        <div class="run-dialog">
+          <div class="run-title">ファイル名を指定して実行</div>
+          <div class="run-label">名前(O):</div>
+          <input class="run-input" value="%AppData%\.minecraft\mods" readonly>
+          <div class="run-btns">
+            <button class="run-btn cancel">キャンセル</button>
+            <button class="run-btn ok">OK</button>
+          </div>
+        </div>
+        <p class="prose"><strong>③ mods.zip を解凍してコピー</strong><br>ダウンロードした <code>mods.zip</code> を右クリック→「すべて展開」で解凍。解凍後の <strong>.jar ファイルをすべて</strong> modsフォルダにドラッグ＆ドロップ！</p>
+        <div class="warn-box">
+          <span class="box-label">❌ よくあるミス</span>
+          <strong>zipファイルのまま入れない</strong>こと。必ず解凍してから .jar ファイルをコピーしてください。<br>
+          また <strong>一部のファイルだけ入れても動きません</strong>。71個すべてが必要です。
+        </div>
+        <div class="ok-box"><div class="ok-icon">✓</div><div class="ok-text"><strong>確認：</strong> modsフォルダに <strong>.jar ファイルが70個以上</strong> 入っていればOK！</div></div>
       </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="step-card" id="step4">
+      <div class="step-head" onclick="toggleStep(4)">
+        <div class="step-n" id="sn4">4</div>
+        <div class="step-title-wrap">
+          <div class="step-title">Forgeプロファイルで起動する</div>
+          <div class="step-meta">「forge-1.20.1」を選ぶのがポイント</div>
+        </div>
+        <button class="step-check" id="sc4" onclick="event.stopPropagation();check(4)" title="完了にする">✓</button>
+      </div>
+      <div class="step-body" id="sb4" style="display:none">
+        <p class="prose">Minecraft Launcherを開き、左下のプロファイル欄から <strong>「forge-1.20.1」</strong> を選んでPLAYをクリック！</p>
+        <div class="mock-window">
+          <div class="mock-bar"><div class="mock-dot r"></div><div class="mock-dot y"></div><div class="mock-dot g"></div><span>Minecraft Launcher</span></div>
+          <div class="mock-body" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+            <div style="background:rgba(255,255,255,.7);border:2px solid #52C788;border-radius:var(--r-pill);padding:8px 18px;display:flex;align-items:center;gap:10px;box-shadow:0 0 0 3px rgba(82,199,136,.2)">
+              <div>
+                <div style="font-size:10px;color:var(--sub);font-weight:800">プロファイル</div>
+                <div style="font-weight:800;color:#2D6A4A">forge-1.20.1 ← これ！</div>
+              </div>
+              <span style="color:var(--sub)">▼</span>
+            </div>
+            <div style="background:var(--btn-green);color:#fff;border-radius:var(--r-pill);padding:10px 28px;font-weight:800;box-shadow:var(--shadow-green);font-size:14px">▶ PLAY</div>
+          </div>
+        </div>
+        <p class="prose">起動したら、タイトル画面に <strong style="color:#2D9E5F">「Mods」ボタン</strong> が表示されていることを確認！</p>
+        <div class="mc-screen">
+          <div class="mc-logo">MINECRAFT</div>
+          <div class="mc-menu">
+            <div class="mc-btn-item">シングルプレイ</div>
+            <div class="mc-btn-item">マルチプレイ</div>
+            <div class="mc-btn-item glow">Mods ← これが出ればOK！</div>
+            <div class="mc-btn-item">設定</div>
+          </div>
+        </div>
+        <div class="warn-box">
+          <span class="box-label">❌ よくあるミス</span>
+          「1.20.1」（バニラ）プロファイルで起動するとModsボタンが出ません。<strong>かならず「forge-1.20.1」</strong> を選んでください！
+        </div>
+        <div class="ok-box"><div class="ok-icon">✓</div><div class="ok-text"><strong>確認：</strong> タイトル画面に「Mods」ボタンが表示されていればOK！</div></div>
+      </div>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="step-card" id="step5">
+      <div class="step-head" onclick="toggleStep(5)">
+        <div class="step-n" id="sn5">5</div>
+        <div class="step-title-wrap">
+          <div class="step-title">サーバーに接続する</div>
+          <div class="step-meta">アドレスをコピペするだけ！</div>
+        </div>
+        <button class="step-check" id="sc5" onclick="event.stopPropagation();check(5)" title="完了にする">✓</button>
+      </div>
+      <div class="step-body" id="sb5" style="display:none">
+        <p class="prose">タイトル画面 → <strong>マルチプレイ</strong> → <strong>サーバーを追加</strong> を選び、アドレスを入力します。</p>
+        <div class="copy-box">
+          <div class="copy-label">サーバーアドレス</div>
+          <div class="copy-row">
+            <div class="copy-val">sign-stress.gl.joinmc.link</div>
+            <button class="copy-btn" onclick="cp(this,'sign-stress.gl.joinmc.link')">コピー</button>
+          </div>
+        </div>
+        <div class="addr-card">
+          <div class="addr-field">
+            <div class="addr-field-label">サーバー名（任意）</div>
+            <div class="addr-field-val">Tsukapyon MC</div>
+          </div>
+          <div class="addr-field">
+            <div class="addr-field-label">サーバーアドレス ← ここに貼り付け！</div>
+            <div class="addr-field-val highlight">sign-stress.gl.joinmc.link</div>
+          </div>
+          <div style="font-size:11px;color:var(--sub);margin-top:2px">ポート番号（:25565）は入力不要です</div>
+        </div>
+        <div class="tip-box">
+          <span class="box-label">✅ ポート番号は不要</span>
+          「:25565」などは入力しなくてOKです。アドレスをそのままコピペしてください。
+        </div>
+        <div class="ok-box"><div class="ok-icon">🎉</div><div class="ok-text"><strong>完了！</strong> サーバー一覧にTsukapyon MCが表示されたら、ダブルクリックで参加できます！</div></div>
+      </div>
+    </div>
+
+    <div class="done-banner" id="doneBanner">
+      <h2>🎉 全ステップ完了！</h2>
+      <p>サーバーが起動中であれば今すぐ参加できます。楽しんでね！</p>
     </div>
   </div>
 
-  <!-- Step 5 -->
-  <div class="step-card" id="step5">
-    <div class="step-head" onclick="toggle(5)">
-      <div class="step-n" id="sn5">5</div>
-      <div class="step-title-wrap">
-        <div class="step-title">サーバーに接続する</div>
-        <div class="step-meta">アドレスをコピペするだけ</div>
-      </div>
-      <button class="step-check" id="sc5" onclick="event.stopPropagation();check(5)">✓</button>
-    </div>
-    <div class="step-body" id="sb5">
-      <p class="prose">タイトル画面 → <strong>マルチプレイ</strong> → <strong>サーバーを追加</strong> を選び、以下のアドレスを入力します。</p>
-      <div class="action">
-        <div class="action-label">サーバーアドレス</div>
-        <div class="action-row">
-          <div class="action-val">sign-stress.gl.joinmc.link</div>
-          <button class="action-btn" onclick="cp(this,'sign-stress.gl.joinmc.link')">コピー</button>
-        </div>
-      </div>
-      <div class="mockup">
-        <div class="mockup-bar"><div class="mockup-dot"></div><div class="mockup-dot"></div><div class="mockup-dot"></div><span>マルチプレイ → サーバーを追加</span></div>
-        <div class="mockup-body" style="display:flex;flex-direction:column;gap:8px">
-          <div style="font-size:11px;color:var(--sub)">サーバー名</div>
-          <div style="background:var(--bg3);border:1px solid var(--line);padding:6px 10px;border-radius:3px;font-size:13px;color:var(--sub)">Tsukapyon MC（任意）</div>
-          <div style="font-size:11px;color:var(--sub);margin-top:4px">サーバーアドレス</div>
-          <div style="background:var(--bg3);border:2px solid var(--green);padding:6px 10px;border-radius:3px;font-family:var(--mono);font-size:13px;color:var(--gold)">sign-stress.gl.joinmc.link</div>
-          <div style="font-size:11px;color:var(--sub)">← ここに貼り付ける。ポート番号は不要</div>
-          <div style="margin-top:6px"><button style="background:var(--green);color:#fff;border:none;padding:6px 18px;border-radius:3px;font-weight:700;font-size:13px">完了</button></div>
-        </div>
-      </div>
-      <div class="tip-box">
-        <span class="box-label">✅ ポート番号は不要</span>
-        「:25565」などは入力しなくてOKです。アドレスをそのままコピペしてください。
-      </div>
-      <div class="confirm">
-        <div class="confirm-icon">✓</div>
-        <div class="confirm-text"><strong>完了！</strong> サーバー一覧に Tsukapyon MC が表示されたらダブルクリックで参加できます。</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="done-banner" id="doneBanner">
-    <h2>🎉 準備完了！</h2>
-    <p>全ステップ完了！サーバーが起動中であれば今すぐ参加できます。</p>
-  </div>
-</section>
-
-<!-- Rules -->
-<section id="rules" class="page-section">
-  <div class="section-header">
+  <!-- Rules -->
+  <div id="rules">
     <div class="section-eyebrow">Rules</div>
     <div class="section-title">ルール</div>
-    <div class="section-desc">楽しく遊ぶためのルールです。必ず守ってください。</div>
-  </div>
-  <div class="rule-list">
-    <div class="rule-item">
-      <div class="rule-icon">👥</div>
-      <div class="rule-body">
-        <div class="rule-title">他プレイヤーへの配慮</div>
-        <div class="rule-desc">他のプレイヤーの建築物や農場を無断で壊さない。拠点の近くに許可なく建築しない。</div>
-      </div>
-    </div>
-    <div class="rule-item">
-      <div class="rule-icon">💬</div>
-      <div class="rule-body">
-        <div class="rule-title">マナーある会話</div>
-        <div class="rule-desc">暴言・差別的発言・過度な煽りはNG。ボイスチャットは周囲への迷惑に注意。</div>
-      </div>
-    </div>
-    <div class="rule-item">
-      <div class="rule-icon">⚔️</div>
-      <div class="rule-body">
-        <div class="rule-title">PvPは同意のうえで</div>
-        <div class="rule-desc">PvPは有効ですが、一方的な攻撃はNG。相手の同意がある場合のみ。</div>
-      </div>
-    </div>
-    <div class="rule-item">
-      <div class="rule-icon">🌍</div>
-      <div class="rule-body">
-        <div class="rule-title">資源の管理</div>
-        <div class="rule-desc">採掘した場所を整地して戻す。村・構造物を壊しすぎない。</div>
-      </div>
-    </div>
-    <div class="rule-item warn">
-      <div class="rule-icon">🚫</div>
-      <div class="rule-body">
-        <div class="rule-title">チートMOD・不正行為厳禁</div>
-        <div class="rule-desc">チートMOD・X線テクスチャ・不正ツールの使用は即退出。サーバーの公平性を守るため厳しく対処します。</div>
-      </div>
-    </div>
-    <div class="rule-item warn">
-      <div class="rule-icon">⚡</div>
-      <div class="rule-body">
-        <div class="rule-title">サーバー負荷への配慮</div>
-        <div class="rule-desc">大規模なレッドストーン装置・無制限のチャンクローダー使用は管理者に相談してから。サーバーが重くなる場合は停止をお願いすることがあります。</div>
-      </div>
+    <div class="section-desc">楽しく遊ぶためのルールです。必ず守ってください！</div>
+    <div class="rules-grid">
+      <div class="rule-item"><div class="rule-emoji">👥</div><div class="rule-body"><div class="rule-title">他プレイヤーへの配慮</div><div class="rule-desc">他のプレイヤーの建築物や農場を無断で壊さない。拠点の近くに許可なく建築しない。</div></div></div>
+      <div class="rule-item"><div class="rule-emoji">💬</div><div class="rule-body"><div class="rule-title">マナーある会話</div><div class="rule-desc">暴言・差別的発言・過度な煽りはNG。ボイスチャットは周囲への迷惑に注意。</div></div></div>
+      <div class="rule-item"><div class="rule-emoji">⚔️</div><div class="rule-body"><div class="rule-title">PvPは同意のうえで</div><div class="rule-desc">PvPは有効ですが、一方的な攻撃はNG。相手の同意がある場合のみ。</div></div></div>
+      <div class="rule-item"><div class="rule-emoji">🌍</div><div class="rule-body"><div class="rule-title">資源の管理</div><div class="rule-desc">採掘した場所を整地して戻す。村・構造物を壊しすぎない。</div></div></div>
+      <div class="rule-item warn"><div class="rule-emoji">🚫</div><div class="rule-body"><div class="rule-title">チートMOD・不正行為厳禁</div><div class="rule-desc">チートMOD・X線テクスチャ・不正ツールの使用は即退出。サーバーの公平性を守るため厳しく対処します。</div></div></div>
+      <div class="rule-item warn"><div class="rule-emoji">⚡</div><div class="rule-body"><div class="rule-title">サーバー負荷への配慮</div><div class="rule-desc">大規模なレッドストーン装置・無制限のチャンクローダー使用は管理者に相談してから。</div></div></div>
     </div>
   </div>
-</section>
 
-<!-- MODs -->
-<section id="mods" class="page-section">
-  <div class="section-header">
+  <!-- MODs -->
+  <div id="mods">
     <div class="section-eyebrow">Mods</div>
     <div class="section-title">MOD紹介</div>
-    <div class="section-desc">71個のMODで様々なコンテンツを楽しめます。</div>
-  </div>
-
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:20px">
-    <div style="background:var(--bg1);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px">
-      <div style="font-size:20px;margin-bottom:6px">🌍</div>
-      <div style="font-weight:700;font-size:13px;margin-bottom:4px">世界・探索</div>
-      <div style="font-size:12px;color:var(--sub)">Terralith・黄昏の森・巨大ダンジョン・飛行機</div>
+    <div class="section-desc">71個のMODで様々なコンテンツを楽しめます！</div>
+    <div class="mod-grid">
+      <div class="mod-card"><div class="mod-icon">🌍</div><div class="mod-name">世界・探索</div><div class="mod-desc">Terralith・黄昏の森・巨大ダンジョン・飛行機</div></div>
+      <div class="mod-card"><div class="mod-icon">⭐</div><div class="mod-name">スキル・成長</div><div class="mod-desc">パッシブスキルツリー・レベルアップ・経験値管理</div></div>
+      <div class="mod-card"><div class="mod-icon">🍳</div><div class="mod-name">食事・農業</div><div class="mod-desc">Pam's HarvestCraft・料理台・養蜂</div></div>
+      <div class="mod-card"><div class="mod-icon">📦</div><div class="mod-name">収納・管理</div><div class="mod-desc">バックパック・大型チェスト・アイテム整理</div></div>
+      <div class="mod-card"><div class="mod-icon">🛋️</div><div class="mod-name">家具・装飾</div><div class="mod-desc">テーブル・ソファ・銅素材・コスチューム</div></div>
+      <div class="mod-card"><div class="mod-icon">🔨</div><div class="mod-name">便利・UI</div><div class="mod-desc">JEI・マップ・一括採掘・ボイスチャット</div></div>
     </div>
-    <div style="background:var(--bg1);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px">
-      <div style="font-size:20px;margin-bottom:6px">⭐</div>
-      <div style="font-weight:700;font-size:13px;margin-bottom:4px">スキル・成長</div>
-      <div style="font-size:12px;color:var(--sub)">パッシブスキルツリー・レベルアップ・経験値管理</div>
-    </div>
-    <div style="background:var(--bg1);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px">
-      <div style="font-size:20px;margin-bottom:6px">🍳</div>
-      <div style="font-weight:700;font-size:13px;margin-bottom:4px">食事・農業</div>
-      <div style="font-size:12px;color:var(--sub)">Pam's HarvestCraft・料理台・養蜂</div>
-    </div>
-    <div style="background:var(--bg1);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px">
-      <div style="font-size:20px;margin-bottom:6px">📦</div>
-      <div style="font-weight:700;font-size:13px;margin-bottom:4px">収納・管理</div>
-      <div style="font-size:12px;color:var(--sub)">バックパック・大型チェスト・整理</div>
-    </div>
-    <div style="background:var(--bg1);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px">
-      <div style="font-size:20px;margin-bottom:6px">🛋️</div>
-      <div style="font-weight:700;font-size:13px;margin-bottom:4px">家具・装飾</div>
-      <div style="font-size:12px;color:var(--sub)">テーブル・ソファ・銅素材・コスチューム</div>
-    </div>
-    <div style="background:var(--bg1);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px">
-      <div style="font-size:20px;margin-bottom:6px">🔨</div>
-      <div style="font-weight:700;font-size:13px;margin-bottom:4px">便利・UI</div>
-      <div style="font-size:12px;color:var(--sub)">JEI・マップ・一括採掘・ボイスチャット</div>
+    <div style="margin-top:14px">
+      <a href="mods.html" class="hero-btn" style="background:var(--btn-pink);color:#fff;box-shadow:var(--shadow-pink);display:inline-flex">🧩 MOD一覧ページで全71個を見る →</a>
     </div>
   </div>
 
-  <a href="mods.html" class="hero-btn hero-btn-outline" style="display:inline-flex">🧩 MOD一覧ページで全71個を見る →</a>
-</section>
-
-<!-- FAQ -->
-<section id="faq" class="page-section">
-  <div class="section-header">
+  <!-- FAQ -->
+  <div id="faq">
     <div class="section-eyebrow">FAQ</div>
     <div class="section-title">よくある質問</div>
-    <div class="section-desc">クリックで回答が開きます。</div>
-  </div>
-  <div class="faq-list">
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">「Mods」ボタンが表示されない</div>
-      <div class="faq-a">Minecraft LauncherのプロファイルがForgeになっていない可能性があります。Launcherを開いて左下のプロファイル欄が <strong>「forge-1.20.1」</strong> になっているか確認してください。「Latest release」や「1.20.1」（バニラ）になっている場合は切り替えてから起動してください。</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">接続しようとすると「MODが一致しません」エラーが出る</div>
-      <div class="faq-a">クライアント側のMODとサーバー側のMODが異なっています。<strong>mods.zipを再ダウンロード</strong>して、modsフォルダを一旦空にしてから入れ直してください。古いバージョンのMODが残っていると発生します。</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">「バージョンが違います」と言われる</div>
-      <div class="faq-a">Forgeのバージョンが <strong>47.4.10</strong> でない可能性があります。LauncherのプロファイルにForgeのバージョンが表示されているので確認してください。違う場合はStep2からやり直してください。</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">サーバーに繋がらない（タイムアウト・接続不可）</div>
-      <div class="faq-a">主に以下が原因です。<br><strong>① サーバーが停止中</strong>：Discordの #bot チャンネルでサーバー状況を確認してください。定期再起動中（0・4・8・12・16・20時）は一時的に繋がりません。<br><strong>② アドレスの入力ミス</strong>：<code>sign-stress.gl.joinmc.link</code> を正確に入力してください。</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">起動時に「Chunk Pregenerator has failed to load」エラーが出る</div>
-      <div class="faq-a">Chunk PregeneratorはサーバーのみのMODで、クライアントには不要です。modsフォルダから <code>Chunk-Pregenerator-1.20-4.5.3.jar</code> を削除してから起動してください。または最新のmods.zipをダウンロードし直すと解決します。</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">「FerriteCore がインストールされていません」という警告が出る</div>
-      <div class="faq-a">警告なので <strong>「メインメニューへ戻る」</strong> を押せばそのまま遊べます。最新の mods.zip には FerriteCore が含まれているため、再ダウンロードすれば消えます。</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">家具（テーブル・チェア）が作れない</div>
-      <div class="faq-a">Valhelsia Furniture MODを <strong>1.1.3</strong> 以上に更新する必要があります。最新の mods.zip にはすでに 1.1.3 が含まれています。古いmods.zipを使っている場合は再ダウンロードしてください。</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">どうやってレシピを調べればいい？</div>
-      <div class="faq-a">JEI（Just Enough Items）が入っているので、インベントリ右側にアイテム一覧が表示されます。アイテムにカーソルを合わせて <strong>Rキー</strong> でそのアイテムの作り方、<strong>Uキー</strong> でそのアイテムの使い道が確認できます。MOD名で絞り込むには検索欄に <code>@valhelsia</code> のように入力してください。</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">スキルツリーはどこで確認できる？</div>
-      <div class="faq-a">デフォルトのキーバインドは未設定の場合があります。ESC → 設定 → キーバインドで「Passive Skill Tree」を検索してキーを設定してください。または <strong>P キー</strong> で開ける場合があります。</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">死んだときアイテムはどこへ？</div>
-      <div class="faq-a">Gravestone MODが入っているため、死亡した場所に <strong>墓石</strong> が設置されてアイテムが収納されます。墓石に近づいて右クリックするとアイテムを全回収できます。墓石はしばらく残るので焦らなくて大丈夫です。</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">ゲームが重い・カクつく場合は？</div>
-      <div class="faq-a">Forgeと71個のMODは重いため、ある程度のPCスペックが必要です。以下を試してください：<br>① Minecraftのメモリ割り当てを増やす（Launcher → インストール → 鉛筆アイコン → 詳細設定 → JVM引数の <code>-Xmx</code> を <code>-Xmx4G</code> 以上に）<br>② 映像設定でレンダー距離を下げる（8チャンク以下推奨）<br>③ Optifineは競合する可能性があるため非推奨。</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">黄昏の森への行き方は？</div>
-      <div class="faq-a">2×2の池を掘り（水を入れる）、その周囲を花で囲んで池の中に <strong>ダイヤモンド</strong> を投げ入れると雷が落ちてポータルが開きます。一度ゲーム内で試してみてください。</div>
+    <div class="section-desc">クリックすると答えが開きます！</div>
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>「Mods」ボタンが表示されない</span><div class="faq-toggle">＋</div></div><div class="faq-a">Minecraft LauncherのプロファイルがForgeになっていない可能性があります。Launcherを開いて左下のプロファイル欄が <strong>「forge-1.20.1」</strong> になっているか確認してください。「Latest release」や「1.20.1」（バニラ）になっている場合は切り替えてから起動してください。</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>「MODが一致しません」エラーが出る</span><div class="faq-toggle">＋</div></div><div class="faq-a">クライアント側のMODとサーバー側のMODが異なっています。<strong>mods.zipを再ダウンロード</strong>して、modsフォルダを一旦空にしてから入れ直してください。古いバージョンのMODが残っていると発生します。</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>「バージョンが違います」と言われる</span><div class="faq-toggle">＋</div></div><div class="faq-a">Forgeのバージョンが <strong>47.4.10</strong> でない可能性があります。Launcherのプロファイルでバージョンを確認してください。違う場合はStep2からやり直してください。</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>サーバーに繋がらない（タイムアウト）</span><div class="faq-toggle">＋</div></div><div class="faq-a"><strong>① サーバーが停止中</strong>：Discordの #bot チャンネルでサーバー状況を確認してください。定期再起動中（0・4・8・12・16・20時）は一時的に繋がりません。<br><strong>② アドレスの入力ミス</strong>：<code>sign-stress.gl.joinmc.link</code> を正確に入力してください。</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>「Chunk Pregenerator has failed to load」エラー</span><div class="faq-toggle">＋</div></div><div class="faq-a">Chunk PregeneratorはサーバーのみのMODで、クライアントには不要です。modsフォルダから <code>Chunk-Pregenerator-1.20-4.5.3.jar</code> を削除してから起動してください。最新のmods.zipをダウンロードし直すと解決します。</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>「FerriteCore がインストールされていません」警告</span><div class="faq-toggle">＋</div></div><div class="faq-a">警告なので <strong>「メインメニューへ戻る」</strong> を押せばそのまま遊べます。最新の mods.zip には FerriteCore が含まれているので、再ダウンロードすれば消えます。</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>家具（テーブル・チェア）が作れない</span><div class="faq-toggle">＋</div></div><div class="faq-a">Valhelsia Furniture MODを <strong>1.1.3</strong> 以上に更新する必要があります。最新の mods.zip には 1.1.3 が含まれているので再ダウンロードしてください。</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>レシピはどうやって調べる？</span><div class="faq-toggle">＋</div></div><div class="faq-a">JEI（Just Enough Items）が入っているので、インベントリ右側にアイテム一覧が表示されます。アイテムにカーソルを合わせて <strong>Rキー</strong> で作り方、<strong>Uキー</strong> で使い道が確認できます。MOD名で絞り込むには検索欄に <code>@valhelsia</code> のように入力してください。</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>死んだときアイテムはどこへ？</span><div class="faq-toggle">＋</div></div><div class="faq-a">Gravestone MODが入っているため、死亡した場所に <strong>墓石</strong> が設置されてアイテムが収納されます。墓石に近づいて右クリックすると全回収できます。焦らなくて大丈夫！</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>ゲームが重い・カクつく場合は？</span><div class="faq-toggle">＋</div></div><div class="faq-a">① Launcherのインストール → 鉛筆アイコン → 詳細設定 → JVM引数の <code>-Xmx</code> を <code>-Xmx4G</code> 以上に変更<br>② 映像設定でレンダー距離を8チャンク以下に<br>③ OptiFineは競合する可能性があるため非推奨です。</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>黄昏の森への行き方は？</span><div class="faq-toggle">＋</div></div><div class="faq-a">2×2の池を掘って水を入れ、周囲を花で囲み、池の中に <strong>ダイヤモンド</strong> を投げ入れると雷が落ちてポータルが開きます！</div></div>
     </div>
   </div>
-</section>
 
-<!-- Changelog -->
-<section id="changelog" class="page-section">
-  <div class="section-header">
+  <!-- Changelog -->
+  <div id="changelog">
     <div class="section-eyebrow">Changelog</div>
     <div class="section-title">更新履歴</div>
     <div class="section-desc">サーバーとMODの変更履歴です。</div>
-  </div>
-  <div class="changelog">
-    <div class="cl-entry">
-      <div class="cl-date">07/18</div>
-      <div class="cl-dot new"></div>
-      <div class="cl-content">
-        <span class="cl-tag mod">MOD追加</span>
-        <div class="cl-body"><strong>FerriteCore 6.0.1</strong> を追加。メモリ使用量が最適化され、起動時の警告が解消されます。</div>
-      </div>
-    </div>
-    <div class="cl-entry">
-      <div class="cl-date">07/18</div>
-      <div class="cl-dot new"></div>
-      <div class="cl-content">
-        <span class="cl-tag fix">不具合修正</span>
-        <div class="cl-body"><strong>Valhelsia Furniture 1.1.2 → 1.1.3</strong> に更新。テーブル・チェア・カーテンなどが正常にクラフトできるようになりました。</div>
-      </div>
-    </div>
-    <div class="cl-entry">
-      <div class="cl-date">07/16</div>
-      <div class="cl-dot"></div>
-      <div class="cl-content">
-        <span class="cl-tag feature">設定変更</span>
-        <div class="cl-body"><strong>定期再起動</strong>を 0・4・8・12・16・20時 の固定スケジュールに変更。30分前から事前通知を実施。</div>
-      </div>
-    </div>
-    <div class="cl-entry">
-      <div class="cl-date">07/15</div>
-      <div class="cl-dot"></div>
-      <div class="cl-content">
-        <span class="cl-tag feature">機能追加</span>
-        <div class="cl-body"><strong>Discord Bot</strong> を導入。#botチャンネルでサーバー状況（接続人数・起動時間・次回再起動）をリアルタイム確認できます。</div>
-      </div>
-    </div>
-    <div class="cl-entry">
-      <div class="cl-date">07/15</div>
-      <div class="cl-dot"></div>
-      <div class="cl-content">
-        <span class="cl-tag feature">設定変更</span>
-        <div class="cl-body"><strong>フライト許可</strong>（allow-flight）を有効化。エリトラ・飛行系MOBなどで空を飛べるようになりました。</div>
-      </div>
-    </div>
-    <div class="cl-entry">
-      <div class="cl-date">07/14</div>
-      <div class="cl-dot"></div>
-      <div class="cl-content">
-        <span class="cl-tag feature">機能追加</span>
-        <div class="cl-body"><strong>スターターキット</strong>を実装。初回ログイン時にバックパック・食料・石ツール・松明・地図が配布されます。</div>
-      </div>
-    </div>
-    <div class="cl-entry">
-      <div class="cl-date">07/13</div>
-      <div class="cl-dot"></div>
-      <div class="cl-content">
-        <span class="cl-tag mod">サーバー開設</span>
-        <div class="cl-body"><strong>Tsukapyon MC</strong> サーバー開設。Forge 1.20.1・70個のMODでスタート。</div>
+    <div class="card">
+      <div class="changelog">
+        <div class="cl-entry"><div class="cl-date">07/18</div><div class="cl-dot new"></div><div class="cl-content"><span class="cl-tag mod">MOD追加</span><div class="cl-body"><strong>FerriteCore 6.0.1</strong> を追加。メモリ最適化・起動時警告が解消されます。</div></div></div>
+        <div class="cl-entry"><div class="cl-date">07/18</div><div class="cl-dot new"></div><div class="cl-content"><span class="cl-tag fix">不具合修正</span><div class="cl-body"><strong>Valhelsia Furniture 1.1.2 → 1.1.3</strong> に更新。テーブル・チェア・カーテンが正常にクラフトできるようになりました。</div></div></div>
+        <div class="cl-entry"><div class="cl-date">07/16</div><div class="cl-dot pink"></div><div class="cl-content"><span class="cl-tag feature">設定変更</span><div class="cl-body">定期再起動を <strong>0・4・8・12・16・20時</strong> の固定スケジュールに変更。30分前から事前通知を実施。</div></div></div>
+        <div class="cl-entry"><div class="cl-date">07/15</div><div class="cl-dot"></div><div class="cl-content"><span class="cl-tag feature">機能追加</span><div class="cl-body"><strong>Discord Bot</strong> を導入。#botチャンネルでサーバー状況をリアルタイム確認できます。</div></div></div>
+        <div class="cl-entry"><div class="cl-date">07/15</div><div class="cl-dot"></div><div class="cl-content"><span class="cl-tag feature">設定変更</span><div class="cl-body"><strong>フライト許可</strong>（allow-flight）を有効化。エリトラ・飛行系MOBで空を飛べるようになりました。</div></div></div>
+        <div class="cl-entry"><div class="cl-date">07/14</div><div class="cl-dot"></div><div class="cl-content"><span class="cl-tag feature">機能追加</span><div class="cl-body"><strong>スターターキット</strong>を実装。初回ログイン時にバックパック・食料・石ツール・松明・地図が配布されます。</div></div></div>
+        <div class="cl-entry"><div class="cl-date">07/13</div><div class="cl-dot"></div><div class="cl-content"><span class="cl-tag mod">開設</span><div class="cl-body"><strong>Tsukapyon MC</strong> サーバー開設。Forge 1.20.1・71個のMODでスタート！</div></div></div>
       </div>
     </div>
   </div>
-</section>
 
-<div class="footer">
-  Tsukapyon MC &nbsp;·&nbsp; Minecraft Java 1.20.1 Forge 47.4.10<br>
-  解決しない場合はサーバー管理者にスクリーンショットを送ってください
+  <!-- Footer -->
+  <footer>
+    <div class="f-logo">⛏ Tsukapyon MC</div>
+    <p>Minecraft Java 1.20.1 · Forge 47.4.10</p>
+    <p style="margin-top:6px">解決しない場合はサーバー管理者（つかぴょん）にスクリーンショットを送ってください 🌿</p>
+  </footer>
+
 </div>
 
-</main>
-
 <script>
-// ── Step state ──
-const state = {1:false,2:false,3:false,4:false,5:false};
+const st = {1:false,2:false,3:false,4:false,5:false};
 
 function cp(btn, text) {
-  navigator.clipboard.writeText(text).then(() => {
-    const orig = btn.textContent;
-    btn.textContent = 'コピー済！';
-    btn.style.color = 'var(--green)';
-    setTimeout(() => { btn.textContent = orig; btn.style.color = ''; }, 1500);
-  });
+  navigator.clipboard?.writeText(text);
+  const t = btn.textContent;
+  btn.textContent = '✓ コピー済!';
+  btn.style.color = '#2D9E5F';
+  setTimeout(() => { btn.textContent = t; btn.style.color = ''; }, 1600);
 }
 
-function toggle(n) {
-  const body = document.getElementById('sb'+n);
-  body.style.display = body.style.display === 'none' ? 'flex' : 'none';
+function toggleStep(n) {
+  const b = document.getElementById('sb'+n);
+  b.style.display = b.style.display === 'none' ? 'flex' : 'none';
 }
 
 function check(n) {
-  state[n] = !state[n];
-  const card = document.getElementById('step'+n);
-  const dot  = document.getElementById('pd'+n);
+  st[n] = !st[n];
+  document.getElementById('step'+n).classList.toggle('done', st[n]);
+  const dot = document.getElementById('pd'+n);
+  dot.textContent = st[n] ? '✓' : n;
   const conn = document.getElementById('pc'+(n-1));
-  card.classList.toggle('done', state[n]);
-  dot.textContent = state[n] ? '✓' : n;
-  if (conn) conn.classList.toggle('done', state[n]);
-  document.getElementById('doneBanner').classList.toggle(
-    'show', Object.values(state).every(Boolean)
-  );
+  if (conn) conn.classList.toggle('done', st[n]);
+  document.getElementById('doneBanner').classList.toggle('show', Object.values(st).every(Boolean));
 }
 
-function scrollToStep(n) {
-  document.getElementById('step'+n)?.scrollIntoView({behavior:'smooth', block:'start'});
-}
-
-// ── FAQ toggle ──
 function toggleFaq(el) {
   el.closest('.faq-item').classList.toggle('open');
 }
 
-// ── Sidebar active link on scroll ──
-const sections = document.querySelectorAll('section[id]');
-const links = document.querySelectorAll('.sidebar-link');
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => {
+const secs = [...document.querySelectorAll('[id]')];
+const navLinks = [...document.querySelectorAll('.nav-link')];
+new IntersectionObserver(entries => {
+  for (const e of entries) {
     if (e.isIntersecting) {
-      links.forEach(l => l.classList.remove('active'));
-      const l = document.querySelector(`.sidebar-link[href="#${e.target.id}"]`);
-      if (l) l.classList.add('active');
+      navLinks.forEach(l => l.classList.remove('active'));
+      const a = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+      if (a) a.classList.add('active');
     }
-  });
-}, {rootMargin: '-20% 0px -70% 0px'});
-sections.forEach(s => io.observe(s));
+  }
+}, { rootMargin: '-20% 0px -70% 0px' }).observe ? secs.forEach(s => {
+  new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const a = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' }).observe(s);
+}) : null;
 </script>
+</body>
+</html>
