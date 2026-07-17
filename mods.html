@@ -1,0 +1,871 @@
+<!doctype html>
+<title>MOD一覧 | Tsukapyon MC</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --bg:        #0C1A0C;
+  --bg-card:   #162016;
+  --bg-card2:  #1C2A1C;
+  --border:    #2A3E2A;
+  --text:      #DDE8DD;
+  --muted:     #7A9A7A;
+  --accent:    #5BBF5B;
+  --gold:      #E8B84B;
+  --red:       #E05050;
+  --blue:      #5AABDA;
+  --purple:    #A07FD8;
+  --orange:    #E8884B;
+
+  --cat-world:    #5AABDA;
+  --cat-skill:    #A07FD8;
+  --cat-food:     #5BBF5B;
+  --cat-storage:  #E8B84B;
+  --cat-deco:     #E8884B;
+  --cat-combat:   #E05050;
+  --cat-util:     #7ABFBF;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg:       #F0F5F0;
+    --bg-card:  #FFFFFF;
+    --bg-card2: #F5FAF5;
+    --border:   #C8D8C8;
+    --text:     #1A2A1A;
+    --muted:    #5A7A5A;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:        #0C1A0C;
+  --bg-card:   #162016;
+  --bg-card2:  #1C2A1C;
+  --border:    #2A3E2A;
+  --text:      #DDE8DD;
+  --muted:     #7A9A7A;
+}
+:root[data-theme="light"] {
+  --bg:       #F0F5F0;
+  --bg-card:  #FFFFFF;
+  --bg-card2: #F5FAF5;
+  --border:   #C8D8C8;
+  --text:     #1A2A1A;
+  --muted:    #5A7A5A;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Hiragino Sans", "Yu Gothic UI", "Meiryo", system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ── Sidebar ── */
+nav {
+  position: fixed;
+  top: 0; left: 0;
+  width: 200px;
+  height: 100vh;
+  background: var(--bg-card);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  padding: 24px 0 24px;
+  flex-shrink: 0;
+  z-index: 10;
+}
+nav .logo {
+  padding: 0 20px 20px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+nav .logo-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
+nav .logo-sub {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+nav a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 20px;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+  transition: color 0.15s, background 0.15s;
+  border-left: 2px solid transparent;
+}
+nav a:hover {
+  color: var(--text);
+  background: var(--bg-card2);
+}
+nav a.active {
+  color: var(--text);
+  border-left-color: var(--accent);
+  background: var(--bg-card2);
+}
+nav .nav-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── Main ── */
+main {
+  margin-left: 200px;
+  flex: 1;
+  padding: 48px 48px 80px;
+  max-width: 1080px;
+}
+
+/* ── Header ── */
+.page-header {
+  margin-bottom: 48px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+.page-header h1 {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  text-wrap: balance;
+}
+.page-header p {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.badge {
+  display: inline-block;
+  background: var(--bg-card2);
+  border: 1px solid var(--border);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-left: 10px;
+  letter-spacing: 0.04em;
+  vertical-align: middle;
+}
+
+/* ── Category Section ── */
+.category {
+  margin-bottom: 48px;
+}
+.cat-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.cat-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+.cat-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+}
+.cat-sub {
+  font-size: 12px;
+  color: var(--muted);
+}
+.cat-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.cat-count {
+  font-size: 11px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Mod Grid ── */
+.mod-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.mod-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: border-color 0.15s, background 0.15s;
+}
+.mod-card:hover {
+  border-color: var(--cat-color, var(--accent));
+  background: var(--bg-card2);
+}
+.mod-card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.mod-emoji {
+  font-size: 22px;
+  line-height: 1.2;
+  flex-shrink: 0;
+}
+.mod-info { flex: 1; min-width: 0; }
+.mod-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mod-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 3px;
+  margin-top: 2px;
+  letter-spacing: 0.03em;
+}
+.mod-desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ── Note banner ── */
+.note {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: 6px;
+  padding: 12px 16px;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 32px;
+}
+.note strong { color: var(--gold); }
+
+@media (max-width: 700px) {
+  nav { display: none; }
+  main { margin-left: 0; padding: 24px 16px 60px; }
+}
+</style>
+
+<body>
+
+<nav>
+  <div class="logo">
+    <div class="logo-title">⛏ Tsukapyon MC</div>
+    <div class="logo-sub">MOD一覧</div>
+  </div>
+  <a href="#world" style="--dot:#5AABDA"><span class="nav-dot" style="background:#5AABDA"></span>世界・探索</a>
+  <a href="#skill" style="--dot:#A07FD8"><span class="nav-dot" style="background:#A07FD8"></span>スキル・成長</a>
+  <a href="#food" style="--dot:#5BBF5B"><span class="nav-dot" style="background:#5BBF5B"></span>食事・農業</a>
+  <a href="#storage" style="--dot:#E8B84B"><span class="nav-dot" style="background:#E8B84B"></span>収納・管理</a>
+  <a href="#deco" style="--dot:#E8884B"><span class="nav-dot" style="background:#E8884B"></span>家具・装飾</a>
+  <a href="#combat" style="--dot:#E05050"><span class="nav-dot" style="background:#E05050"></span>戦闘・MOB</a>
+  <a href="#util" style="--dot:#7ABFBF"><span class="nav-dot" style="background:#7ABFBF"></span>便利・UI</a>
+</nav>
+
+<main>
+  <div class="page-header">
+    <h1>導入MOD一覧<span class="badge">Forge 1.20.1</span></h1>
+    <p>Tsukapyon MC に導入されているMODの説明です。クライアント側にも同じMODが必要です。</p>
+  </div>
+
+  <div class="note">
+    <strong>💡 レシピ確認</strong> ゲーム内で <strong>R キー</strong>（JEI）を押すとアイテムのクラフトレシピを確認できます。MOD名で絞り込むには検索欄に <code>@MOD名</code> と入力してください。
+  </div>
+
+  <!-- 世界・探索 -->
+  <section class="category" id="world">
+    <div class="cat-header">
+      <span class="cat-icon">🌍</span>
+      <div>
+        <div class="cat-title">世界・探索</div>
+        <div class="cat-sub">地形・ディメンション・乗り物</div>
+      </div>
+      <div class="cat-line"></div>
+      <div class="cat-count">6 MODs</div>
+    </div>
+    <div class="mod-grid">
+      <div class="mod-card" style="--cat-color:#5AABDA">
+        <div class="mod-card-top">
+          <div class="mod-emoji">🏔️</div>
+          <div class="mod-info">
+            <div class="mod-name">Terralith</div>
+            <span class="mod-tag" style="background:#5AABDA22;color:#5AABDA">地形生成</span>
+          </div>
+        </div>
+        <div class="mod-desc">バニラの地形を大幅に強化。崖、峡谷、草原、砂漠など100種以上の新バイオームが生成されます。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#5AABDA">
+        <div class="mod-card-top">
+          <div class="mod-emoji">🌲</div>
+          <div class="mod-info">
+            <div class="mod-name">The Twilight Forest</div>
+            <span class="mod-tag" style="background:#5AABDA22;color:#5AABDA">ディメンション</span>
+          </div>
+        </div>
+        <div class="mod-desc">永遠に夕暮れの森ディメンション。沼の池にアイテムを投げ込むと入口が開く。ダンジョンとボスが多数。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#5AABDA">
+        <div class="mod-card-top">
+          <div class="mod-emoji">🏯</div>
+          <div class="mod-info">
+            <div class="mod-name">Dungeons Arise</div>
+            <span class="mod-tag" style="background:#5AABDA22;color:#5AABDA">ダンジョン</span>
+          </div>
+        </div>
+        <div class="mod-desc">世界中に巨大な城・砦・村などの構造物を追加。宝箱や強敵が出現します。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#5AABDA">
+        <div class="mod-card-top">
+          <div class="mod-emoji">⛵</div>
+          <div class="mod-info">
+            <div class="mod-name">Dungeons Arise: Seven Seas</div>
+            <span class="mod-tag" style="background:#5AABDA22;color:#5AABDA">ダンジョン</span>
+          </div>
+        </div>
+        <div class="mod-desc">Dungeons Arise の拡張。難破船・海賊船・灯台などの海上構造物を追加。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#5AABDA">
+        <div class="mod-card-top">
+          <div class="mod-emoji">💎</div>
+          <div class="mod-info">
+            <div class="mod-name">Ore Dimensions</div>
+            <span class="mod-tag" style="background:#5AABDA22;color:#5AABDA">ディメンション</span>
+          </div>
+        </div>
+        <div class="mod-desc">鉱石専用のディメンションを追加。効率よく鉱石を集められます。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#5AABDA">
+        <div class="mod-card-top">
+          <div class="mod-emoji">✈️</div>
+          <div class="mod-info">
+            <div class="mod-name">Immersive Aircraft</div>
+            <span class="mod-tag" style="background:#5AABDA22;color:#5AABDA">乗り物</span>
+          </div>
+        </div>
+        <div class="mod-desc">飛行機・気球・飛行船などをクラフトして乗れます。探索の移動手段に。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- スキル・成長 -->
+  <section class="category" id="skill">
+    <div class="cat-header">
+      <span class="cat-icon">⭐</span>
+      <div>
+        <div class="cat-title">スキル・成長</div>
+        <div class="cat-sub">RPG要素・経験値・パッシブスキル</div>
+      </div>
+      <div class="cat-line"></div>
+      <div class="cat-count">4 MODs</div>
+    </div>
+    <div class="mod-grid">
+      <div class="mod-card" style="--cat-color:#A07FD8">
+        <div class="mod-card-top">
+          <div class="mod-emoji">🌳</div>
+          <div class="mod-info">
+            <div class="mod-name">Passive Skill Tree</div>
+            <span class="mod-tag" style="background:#A07FD822;color:#A07FD8">RPGスキル</span>
+          </div>
+        </div>
+        <div class="mod-desc">経験値を使ってパッシブスキルを解放するツリーシステム。採掘・戦闘・農業など幅広い強化ができます。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#A07FD8">
+        <div class="mod-card-top">
+          <div class="mod-emoji">📊</div>
+          <div class="mod-info">
+            <div class="mod-name">Puffish Skills</div>
+            <span class="mod-tag" style="background:#A07FD822;color:#A07FD8">スキル</span>
+          </div>
+        </div>
+        <div class="mod-desc">行動で経験値を稼いでスキルレベルを上げるシステム。採掘・釣り・戦闘など専門スキルが成長します。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#A07FD8">
+        <div class="mod-card-top">
+          <div class="mod-emoji">✨</div>
+          <div class="mod-info">
+            <div class="mod-name">Global XP</div>
+            <span class="mod-tag" style="background:#A07FD822;color:#A07FD8">経験値</span>
+          </div>
+        </div>
+        <div class="mod-desc">経験値を保存・転送できるシステム。死んでも経験値を失わずに保管できます。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#A07FD8">
+        <div class="mod-card-top">
+          <div class="mod-emoji">🌾</div>
+          <div class="mod-info">
+            <div class="mod-name">XP From Harvest Reworked</div>
+            <span class="mod-tag" style="background:#A07FD822;color:#A07FD8">経験値</span>
+          </div>
+        </div>
+        <div class="mod-desc">農作物の収穫で経験値が獲得できます。農業プレイで効率よくレベルアップ。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 食事・農業 -->
+  <section class="category" id="food">
+    <div class="cat-header">
+      <span class="cat-icon">🍳</span>
+      <div>
+        <div class="cat-title">食事・農業</div>
+        <div class="cat-sub">料理・農作物・養蜂</div>
+      </div>
+      <div class="cat-line"></div>
+      <div class="cat-count">5 MODs</div>
+    </div>
+    <div class="mod-grid">
+      <div class="mod-card" style="--cat-color:#5BBF5B">
+        <div class="mod-card-top">
+          <div class="mod-emoji">🥕</div>
+          <div class="mod-info">
+            <div class="mod-name">Pam's HarvestCraft 2: Crops</div>
+            <span class="mod-tag" style="background:#5BBF5B22;color:#5BBF5B">農業</span>
+          </div>
+        </div>
+        <div class="mod-desc">大量の新しい農作物を追加。世界中のシードを見つけて育てましょう。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#5BBF5B">
+        <div class="mod-card-top">
+          <div class="mod-emoji">🍽️</div>
+          <div class="mod-info">
+            <div class="mod-name">Pam's HarvestCraft 2: Food Core</div>
+            <span class="mod-tag" style="background:#5BBF5B22;color:#5BBF5B">料理</span>
+          </div>
+        </div>
+        <div class="mod-desc">料理の基盤システム。鍋・フライパン・ジュースメーカーなどの調理器具を追加します。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#5BBF5B">
+        <div class="mod-card-top">
+          <div class="mod-emoji">🥘</div>
+          <div class="mod-info">
+            <div class="mod-name">Pam's HarvestCraft 2: Food Extended</div>
+            <span class="mod-tag" style="background:#5BBF5B22;color:#5BBF5B">料理</span>
+          </div>
+        </div>
+        <div class="mod-desc">数百種類の料理レシピを追加。食材を組み合わせて高栄養な料理を作れます。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#5BBF5B">
+        <div class="mod-card-top">
+          <div class="mod-emoji">🍴</div>
+          <div class="mod-info">
+            <div class="mod-name">Cooking for Blockheads</div>
+            <span class="mod-tag" style="background:#5BBF5B22;color:#5BBF5B">料理台</span>
+          </div>
+        </div>
+        <div class="mod-desc">キッチンブロックを追加。冷蔵庫・シンク・調理台を並べてキッチンを作れます。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#5BBF5B">
+        <div class="mod-card-top">
+          <div class="mod-emoji">🐝</div>
+          <div class="mod-info">
+            <div class="mod-name">Queen Bee</div>
+            <span class="mod-tag" style="background:#5BBF5B22;color:#5BBF5B">養蜂</span>
+          </div>
+        </div>
+        <div class="mod-desc">養蜂システムを拡張。女王蜂を育ててハチミツや特殊なアイテムを生産できます。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 収納・管理 -->
+  <section class="category" id="storage">
+    <div class="cat-header">
+      <span class="cat-icon">📦</span>
+      <div>
+        <div class="cat-title">収納・管理</div>
+        <div class="cat-sub">バックパック・チェスト・インベントリ</div>
+      </div>
+      <div class="cat-line"></div>
+      <div class="cat-count">7 MODs</div>
+    </div>
+    <div class="mod-grid">
+      <div class="mod-card" style="--cat-color:#E8B84B">
+        <div class="mod-card-top">
+          <div class="mod-emoji">🎒</div>
+          <div class="mod-info">
+            <div class="mod-name">Traveler's Backpack</div>
+            <span class="mod-tag" style="background:#E8B84B22;color:#E8B84B">バックパック</span>
+          </div>
+        </div>
+        <div class="mod-desc">着用できる大型バックパック。液体タンク・クラフト台・スリーピングバッグ付き。スターターキットに含まれます。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#E8B84B">
+        <div class="mod-card-top">
+          <div class="mod-emoji">📫</div>
+          <div class="mod-info">
+            <div class="mod-name">Iron Chests</div>
+            <span class="mod-tag" style="background:#E8B84B22;color:#E8B84B">チェスト</span>
+          </div>
+        </div>
+        <div class="mod-desc">鉄・金・ダイヤ・エメラルドなど素材ごとに容量の違う大型チェストを追加。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#E8B84B">
+        <div class="mod-card-top">
+          <div class="mod-emoji">📤</div>
+          <div class="mod-info">
+            <div class="mod-name">Storage Box</div>
+            <span class="mod-tag" style="background:#E8B84B22;color:#E8B84B">収納</span>
+          </div>
+        </div>
+        <div class="mod-desc">1種類のアイテムだけを大量に収納できる特化型ボックス。素材の大量保管に最適。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#E8B84B">
+        <div class="mod-card-top">
+          <div class="mod-emoji">🧹</div>
+          <div class="mod-info">
+            <div class="mod-name">Trash Slot</div>
+            <span class="mod-tag" style="background:#E8B84B22;color:#E8B84B">インベントリ</span>
+          </div>
+        </div>
+        <div class="mod-desc">インベントリにゴミ箱スロットを追加。不要なアイテムをドラッグするだけで削除できます。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#E8B84B">
+        <div class="mod-card-top">
+          <div class="mod-emoji">🔃</div>
+          <div class="mod-info">
+            <div class="mod-name">Inventory Profiles Next</div>
+            <span class="mod-tag" style="background:#E8B84B22;color:#E8B84B">整理</span>
+          </div>
+        </div>
+        <div class="mod-desc">インベントリをワンクリックで自動整理。装備の自動補充や整列ルールのカスタマイズも可能。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#E8B84B">
+        <div class="mod-card-top">
+          <div class="mod-emoji">🏘️</div>
+          <div class="mod-info">
+            <div class="mod-name">Easy Villagers</div>
+            <span class="mod-tag" style="background:#E8B84B22;color:#E8B84B">村人</span>
+          </div>
+        </div>
+        <div class="mod-desc">村人をブロックに格納して管理できます。取引所を作って自動売買も可能。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#E8B84B">
+        <div class="mod-card-top">
+          <div class="mod-emoji">🔧</div>
+          <div class="mod-info">
+            <div class="mod-name">Iron Repair Kits</div>
+            <span class="mod-tag" style="background:#E8B84B22;color:#E8B84B">修理</span>
+          </div>
+        </div>
+        <div class="mod-desc">砥石や金床不要でアイテムを修理できるキットを追加。耐久値を手軽に回復できます。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 家具・装飾 -->
+  <section class="category" id="deco">
+    <div class="cat-header">
+      <span class="cat-icon">🛋️</span>
+      <div>
+        <div class="cat-title">家具・装飾</div>
+        <div class="cat-sub">インテリア・コスチューム・素材</div>
+      </div>
+      <div class="cat-line"></div>
+      <div class="cat-count">3 MODs</div>
+    </div>
+    <div class="mod-grid">
+      <div class="mod-card" style="--cat-color:#E8884B">
+        <div class="mod-card-top">
+          <div class="mod-emoji">🪑</div>
+          <div class="mod-info">
+            <div class="mod-name">Valhelsia Furniture</div>
+            <span class="mod-tag" style="background:#E8884B22;color:#E8884B">家具</span>
+          </div>
+        </div>
+        <div class="mod-desc">テーブル・チェア・ソファ・照明など多数の家具を追加。木材の種類ごとにバリエーションがあります。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#E8884B">
+        <div class="mod-card-top">
+          <div class="mod-emoji">🪙</div>
+          <div class="mod-info">
+            <div class="mod-name">Everything Copper</div>
+            <span class="mod-tag" style="background:#E8884B22;color:#E8884B">素材</span>
+          </div>
+        </div>
+        <div class="mod-desc">銅を使ったアイテム・ブロックを大量追加。銅製の道具や装飾ブロックが作れます。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#E8884B">
+        <div class="mod-card-top">
+          <div class="mod-emoji">👗</div>
+          <div class="mod-info">
+            <div class="mod-name">Clothes Mod</div>
+            <span class="mod-tag" style="background:#E8884B22;color:#E8884B">衣装</span>
+          </div>
+        </div>
+        <div class="mod-desc">様々なコスチューム・衣装を追加。見た目だけを変えて個性を出せます。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 戦闘・MOB -->
+  <section class="category" id="combat">
+    <div class="cat-header">
+      <span class="cat-icon">⚔️</span>
+      <div>
+        <div class="cat-title">戦闘・MOB</div>
+        <div class="cat-sub">新MOB・メイド・グレイブストーン</div>
+      </div>
+      <div class="cat-line"></div>
+      <div class="cat-count">4 MODs</div>
+    </div>
+    <div class="mod-grid">
+      <div class="mod-card" style="--cat-color:#E05050">
+        <div class="mod-card-top">
+          <div class="mod-emoji">🦁</div>
+          <div class="mod-info">
+            <div class="mod-name">Earth Mobs</div>
+            <span class="mod-tag" style="background:#E0505022;color:#E05050">MOB</span>
+          </div>
+        </div>
+        <div class="mod-desc">Minecraft Earthから移植された生き物を追加。クモネコ・チョコレートウサギなどユニークなMOBが出現します。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#E05050">
+        <div class="mod-card-top">
+          <div class="mod-emoji">🎀</div>
+          <div class="mod-info">
+            <div class="mod-name">Touhou Little Maid</div>
+            <span class="mod-tag" style="background:#E0505022;color:#E05050">メイド</span>
+          </div>
+        </div>
+        <div class="mod-desc">東方キャラをモチーフにしたメイドを召喚・育成できます。戦闘・採掘など様々な仕事を任せられます。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#E05050">
+        <div class="mod-card-top">
+          <div class="mod-emoji">🗡️</div>
+          <div class="mod-info">
+            <div class="mod-name">Useless Sword</div>
+            <span class="mod-tag" style="background:#E0505022;color:#E05050">武器</span>
+          </div>
+        </div>
+        <div class="mod-desc">ユニークな能力を持つ様々な剣を追加。実用性よりもコレクション要素が強め。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#E05050">
+        <div class="mod-card-top">
+          <div class="mod-emoji">🪦</div>
+          <div class="mod-info">
+            <div class="mod-name">Gravestone</div>
+            <span class="mod-tag" style="background:#E0505022;color:#E05050">デス</span>
+          </div>
+        </div>
+        <div class="mod-desc">死亡時にアイテムが散らばらず墓石に収納されます。墓石を右クリックで全回収。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 便利・UI -->
+  <section class="category" id="util">
+    <div class="cat-header">
+      <span class="cat-icon">🔨</span>
+      <div>
+        <div class="cat-title">便利・UI</div>
+        <div class="cat-sub">採掘・マップ・レシピ確認・ボイスチャット</div>
+      </div>
+      <div class="cat-line"></div>
+      <div class="cat-count">16 MODs</div>
+    </div>
+    <div class="mod-grid">
+      <div class="mod-card" style="--cat-color:#7ABFBF">
+        <div class="mod-card-top">
+          <div class="mod-emoji">📖</div>
+          <div class="mod-info">
+            <div class="mod-name">JEI (Just Enough Items)</div>
+            <span class="mod-tag" style="background:#7ABFBF22;color:#7ABFBF">レシピ</span>
+          </div>
+        </div>
+        <div class="mod-desc">全アイテムのクラフトレシピ・入手方法を確認できます。アイテムにカーソルを合わせて R キーで確認。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#7ABFBF">
+        <div class="mod-card-top">
+          <div class="mod-emoji">🗺️</div>
+          <div class="mod-info">
+            <div class="mod-name">JourneyMap</div>
+            <span class="mod-tag" style="background:#7ABFBF22;color:#7ABFBF">マップ</span>
+          </div>
+        </div>
+        <div class="mod-desc">リアルタイムミニマップ。探索済みの地形が記録され、ウェイポイントを設置できます。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#7ABFBF">
+        <div class="mod-card-top">
+          <div class="mod-emoji">🎙️</div>
+          <div class="mod-info">
+            <div class="mod-name">Simple Voice Chat</div>
+            <span class="mod-tag" style="background:#7ABFBF22;color:#7ABFBF">ボイス</span>
+          </div>
+        </div>
+        <div class="mod-desc">近くにいるプレイヤーと距離感のあるボイスチャットができます。離れると声が小さくなります。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#7ABFBF">
+        <div class="mod-card-top">
+          <div class="mod-emoji">⛏️</div>
+          <div class="mod-info">
+            <div class="mod-name">FTB Ultimine</div>
+            <span class="mod-tag" style="background:#7ABFBF22;color:#7ABFBF">採掘</span>
+          </div>
+        </div>
+        <div class="mod-desc">Shift を押しながら採掘すると同じブロックを一括破壊。木・鉱石の採掘が大幅に楽になります。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#7ABFBF">
+        <div class="mod-card-top">
+          <div class="mod-emoji">⬇️</div>
+          <div class="mod-info">
+            <div class="mod-name">Dig All SMP</div>
+            <span class="mod-tag" style="background:#7ABFBF22;color:#7ABFBF">採掘</span>
+          </div>
+        </div>
+        <div class="mod-desc">縦方向に連続したブロックを一括採掘。土柱や石柱をまとめて掘れます。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#7ABFBF">
+        <div class="mod-card-top">
+          <div class="mod-emoji">➡️</div>
+          <div class="mod-info">
+            <div class="mod-name">Mine All SMP</div>
+            <span class="mod-tag" style="background:#7ABFBF22;color:#7ABFBF">採掘</span>
+          </div>
+        </div>
+        <div class="mod-desc">横方向に連続した鉱脈を一括採掘。石炭・鉄などの鉱石採掘が効率化されます。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#7ABFBF">
+        <div class="mod-card-top">
+          <div class="mod-emoji">🌳</div>
+          <div class="mod-info">
+            <div class="mod-name">Falling Trees</div>
+            <span class="mod-tag" style="background:#7ABFBF22;color:#7ABFBF">伐採</span>
+          </div>
+        </div>
+        <div class="mod-desc">幹の根元を1ブロック破壊すると木全体が倒れます。伐採が一気に楽になります。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#7ABFBF">
+        <div class="mod-card-top">
+          <div class="mod-emoji">🤲</div>
+          <div class="mod-info">
+            <div class="mod-name">Harvest with Ease</div>
+            <span class="mod-tag" style="background:#7ABFBF22;color:#7ABFBF">農業</span>
+          </div>
+        </div>
+        <div class="mod-desc">農作物を右クリックで収穫・再植栽を同時に行えます。農業の手間が大幅削減。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#7ABFBF">
+        <div class="mod-card-top">
+          <div class="mod-emoji">🔍</div>
+          <div class="mod-info">
+            <div class="mod-name">Just Zoom</div>
+            <span class="mod-tag" style="background:#7ABFBF22;color:#7ABFBF">視点</span>
+          </div>
+        </div>
+        <div class="mod-desc">Zキーを押すと遠くをズームして見られます。遠距離の確認や建築に便利。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#7ABFBF">
+        <div class="mod-card-top">
+          <div class="mod-emoji">💡</div>
+          <div class="mod-info">
+            <div class="mod-name">Light Overlay</div>
+            <span class="mod-tag" style="background:#7ABFBF22;color:#7ABFBF">UI</span>
+          </div>
+        </div>
+        <div class="mod-desc">F7キーで地面の光量をオーバーレイ表示。赤いマスはMOBが湧く場所なので松明を置きましょう。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#7ABFBF">
+        <div class="mod-card-top">
+          <div class="mod-emoji">👁️</div>
+          <div class="mod-info">
+            <div class="mod-name">Cosmetic Armor Reworked</div>
+            <span class="mod-tag" style="background:#7ABFBF22;color:#7ABFBF">外見</span>
+          </div>
+        </div>
+        <div class="mod-desc">防具スロットとは別に見た目用スロットを追加。強い防具を着ながら好きな見た目を保てます。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#7ABFBF">
+        <div class="mod-card-top">
+          <div class="mod-emoji">🪶</div>
+          <div class="mod-info">
+            <div class="mod-name">Elytra Slot</div>
+            <span class="mod-tag" style="background:#7ABFBF22;color:#7ABFBF">スロット</span>
+          </div>
+        </div>
+        <div class="mod-desc">エリトラ専用スロットを追加。胸当てを装備したままエリトラを使えます。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#7ABFBF">
+        <div class="mod-card-top">
+          <div class="mod-emoji">📦</div>
+          <div class="mod-info">
+            <div class="mod-name">Chunk Loaders</div>
+            <span class="mod-tag" style="background:#7ABFBF22;color:#7ABFBF">チャンク</span>
+          </div>
+        </div>
+        <div class="mod-desc">設置するだけでオフライン時もそのチャンクを読み込み続けます。自動農場や装置の維持に。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#7ABFBF">
+        <div class="mod-card-top">
+          <div class="mod-emoji">💾</div>
+          <div class="mod-info">
+            <div class="mod-name">FTB Backups</div>
+            <span class="mod-tag" style="background:#7ABFBF22;color:#7ABFBF">バックアップ</span>
+          </div>
+        </div>
+        <div class="mod-desc">サーバーのワールドデータを自動でバックアップ。30分ごとに保存されます。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#7ABFBF">
+        <div class="mod-card-top">
+          <div class="mod-emoji">🔄</div>
+          <div class="mod-info">
+            <div class="mod-name">Polymorph</div>
+            <span class="mod-tag" style="background:#7ABFBF22;color:#7ABFBF">クラフト</span>
+          </div>
+        </div>
+        <div class="mod-desc">複数のMODのレシピが競合する場合に選択できるUIを表示します。レシピ競合を解決します。</div>
+      </div>
+      <div class="mod-card" style="--cat-color:#7ABFBF">
+        <div class="mod-card-top">
+          <div class="mod-emoji">🎯</div>
+          <div class="mod-info">
+            <div class="mod-name">Chunk Pregenerator</div>
+            <span class="mod-tag" style="background:#7ABFBF22;color:#7ABFBF">パフォーマンス</span>
+          </div>
+        </div>
+        <div class="mod-desc">チャンクを事前に生成してサーバーの動作を安定化。初回探索時のラグを軽減します。</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+// Sidebar active state on scroll
+const sections = document.querySelectorAll('section[id]');
+const links = document.querySelectorAll('nav a');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      links.forEach(l => l.classList.remove('active'));
+      const link = document.querySelector(`nav a[href="#${e.target.id}"]`);
+      if (link) link.classList.add('active');
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+
+sections.forEach(s => observer.observe(s));
+</script>
