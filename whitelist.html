@@ -50,15 +50,15 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-weight:
 .nav-btn-pink:hover{transform:translateY(-1px);color:#fff}
 
 /* page */
-.page{max-width:680px;margin:0 auto;padding:48px 20px 100px;display:flex;flex-direction:column;gap:20px}
+.page{max-width:720px;margin:0 auto;padding:48px 20px 100px;display:flex;flex-direction:column;gap:24px}
 
 /* hero */
 .hero{
   background:var(--header-bg);border:2px solid var(--border);
   border-radius:var(--r-modal);padding:40px 36px;box-shadow:var(--shadow-card);
-  text-align:center;position:relative;overflow:hidden;
+  position:relative;overflow:hidden;
 }
-.hero::before{content:'🎮';font-size:130px;position:absolute;right:-16px;bottom:-20px;opacity:.09;pointer-events:none}
+.hero::before{content:'🔑';font-size:130px;position:absolute;right:-16px;bottom:-20px;opacity:.09;pointer-events:none}
 .hero-tag{
   display:inline-flex;align-items:center;gap:7px;
   background:rgba(255,255,255,.55);border:1.5px solid var(--border);
@@ -67,89 +67,192 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-weight:
 }
 .hero h1{font-size:clamp(22px,5vw,32px);font-weight:800;line-height:1.2;margin-bottom:10px}
 .hero h1 em{font-style:normal;color:#2D9E5F}
-.hero p{font-size:13.5px;color:#3a6a50;line-height:1.75}
+.hero p{font-size:13.5px;color:#3a6a50;line-height:1.8}
+.hero-flow{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  margin-top:20px;padding:16px 20px;
+  background:rgba(255,255,255,.45);border-radius:var(--r-card);border:1.5px solid var(--border);
+}
+.flow-item{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:800}
+.flow-arrow{color:var(--sub);font-size:14px}
 
 /* step card */
 .step-card{
   background:var(--card-bg);border:2px solid var(--border);
-  border-radius:var(--r-card);padding:24px 28px;box-shadow:var(--shadow-card);
-  display:flex;gap:18px;align-items:flex-start;
+  border-radius:var(--r-card);overflow:hidden;box-shadow:var(--shadow-card);
+}
+.step-header{
+  display:flex;gap:16px;align-items:flex-start;padding:24px 28px;
 }
 .step-num{
-  width:40px;height:40px;border-radius:50%;flex-shrink:0;
+  width:44px;height:44px;border-radius:50%;flex-shrink:0;
   background:var(--btn-green);box-shadow:var(--shadow-green);
   display:flex;align-items:center;justify-content:center;
-  font-size:16px;font-weight:800;color:#fff;margin-top:2px;
+  font-size:17px;font-weight:800;color:#fff;margin-top:2px;
 }
-.step-body{flex:1}
-.step-title{font-size:15px;font-weight:800;margin-bottom:6px}
-.step-desc{font-size:13px;color:#3a6a50;line-height:1.7}
-.step-sub{font-size:12px;color:var(--sub);margin-top:4px}
-
-/* code block */
-.code-block{
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(45,90,69,.10);border:1.5px solid var(--border);
-  border-radius:10px;padding:8px 14px;margin-top:10px;
-  font-family:var(--mono);font-size:14px;font-weight:400;color:var(--text);
-  cursor:pointer;transition:all .15s;user-select:none;
+.step-header-text{flex:1}
+.step-title{font-size:16px;font-weight:800;margin-bottom:3px}
+.step-meta{font-size:12px;color:var(--sub)}
+.step-content{
+  padding:0 28px 28px;display:flex;flex-direction:column;gap:18px;
+  border-top:1.5px solid rgba(128,212,171,.3);padding-top:20px;
 }
-.code-block:hover{background:rgba(45,90,69,.18)}
-.copy-hint{font-size:11px;color:var(--sub);font-family:var(--font);font-weight:700}
-.copy-done{color:#2D9E5F}
+.prose{font-size:13.5px;color:#2a5a40;line-height:1.8}
+.prose strong{color:var(--text)}
+.prose code{font-family:var(--mono);background:rgba(45,90,69,.1);padding:1px 6px;border-radius:5px;font-size:13px}
 
-/* launcher image hint */
-.img-hint{
-  background:rgba(255,255,255,.5);border:1.5px solid var(--border);
-  border-radius:12px;padding:14px 18px;margin-top:12px;
-  font-size:12.5px;color:#3a6a50;line-height:1.8;
+/* tip / warn / ok boxes */
+.tip-box,.warn-box,.ok-box{
+  border-radius:12px;padding:14px 18px;font-size:12.5px;line-height:1.8;
 }
-.img-hint strong{color:var(--text)}
+.tip-box{background:rgba(82,199,136,.12);border:1.5px solid rgba(82,199,136,.35);color:#1a4a30}
+.warn-box{background:rgba(255,122,154,.10);border:1.5px solid rgba(255,122,154,.35);color:#7a2040}
+.ok-box{background:rgba(45,158,95,.10);border:1.5px solid rgba(45,158,95,.3);color:#1a4a30;display:flex;gap:10px;align-items:flex-start}
+.ok-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+.box-label{display:block;font-weight:800;margin-bottom:4px;font-size:13px}
 
-/* discord btn */
-.discord-btn{
+/* image mockup wrapper */
+.mockup-wrap{
+  border-radius:14px;overflow:hidden;
+  border:2px solid var(--border);
+  box-shadow:var(--shadow-card);
+  background:#fff;
+}
+.mockup-caption{
+  font-size:11.5px;color:var(--sub);text-align:center;margin-top:8px;
+}
+
+/* launcher mockup */
+.launcher-window{
+  background:#1a1a2e;border-radius:0;
+  font-family:var(--font);overflow:hidden;
+}
+.launcher-topbar{
+  background:#0d0d1a;padding:10px 16px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.launcher-logo{color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;gap:8px}
+.launcher-logo-icon{width:22px;height:22px;background:linear-gradient(135deg,#52C788,#2D9E5F);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:12px}
+.launcher-account{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.08);border-radius:20px;padding:5px 12px 5px 5px;
+  position:relative;
+}
+.account-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#7ECFAC,#F9C8D8);display:flex;align-items:center;justify-content:center;font-size:14px}
+.account-name{color:#fff;font-size:13px;font-weight:800}
+.account-arrow{color:rgba(255,255,255,.5);font-size:10px}
+.arrow-highlight{
+  position:absolute;right:-80px;top:50%;transform:translateY(-50%);
+  display:flex;align-items:center;gap:6px;
+  background:linear-gradient(135deg,#FFB7C5,#FF7A9A);
+  border-radius:var(--r-pill);padding:4px 12px 4px 8px;
+  font-size:11px;font-weight:800;color:#fff;
+  box-shadow:var(--shadow-pink);white-space:nowrap;
+}
+.arrow-highlight::before{content:'←';margin-right:2px}
+.launcher-body{padding:16px;display:flex;gap:12px;align-items:flex-end}
+.launcher-profile-pill{
+  background:rgba(255,255,255,.08);border-radius:var(--r-pill);
+  padding:8px 18px;color:rgba(255,255,255,.7);font-size:12px;
+  border:1.5px solid rgba(255,255,255,.12);
+}
+.launcher-play-btn{
+  background:linear-gradient(135deg,#52C788,#2D9E5F);
+  border-radius:var(--r-pill);padding:10px 28px;
+  color:#fff;font-size:14px;font-weight:800;
+  box-shadow:0 4px 14px rgba(45,158,95,.4);
+}
+
+/* discord mockup */
+.discord-window{background:#313338;font-family:var(--font)}
+.discord-topbar{background:#2b2d31;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:8px}
+.discord-channel-icon{color:#72767d;font-size:16px}
+.discord-channel-name{color:#dbdee1;font-size:14px;font-weight:800}
+.discord-chat{padding:16px;display:flex;flex-direction:column;gap:12px}
+.dc-msg{display:flex;gap:10px;align-items:flex-start}
+.dc-avatar{width:36px;height:36px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px}
+.dc-avatar-bot{background:linear-gradient(135deg,#52C788,#2D9E5F)}
+.dc-avatar-user{background:linear-gradient(135deg,#7289DA,#5865F2)}
+.dc-body{flex:1}
+.dc-name{font-size:13px;font-weight:800;margin-bottom:2px}
+.dc-name-bot{color:#57F287}
+.dc-name-user{color:#c9cdfb}
+.dc-text{color:#dbdee1;font-size:13.5px;line-height:1.6}
+.dc-slash{color:#fff;font-weight:800;font-size:14px}
+.dc-param{background:rgba(88,101,242,.3);border-radius:4px;padding:0 5px;color:#c9cdfb}
+.dc-success{
+  margin-top:6px;background:rgba(87,242,135,.1);border-left:3px solid #57F287;
+  padding:8px 12px;border-radius:0 8px 8px 0;
+  color:#57F287;font-size:13px;font-weight:800;
+}
+.discord-input{
+  background:#383a40;margin:0 12px 12px;border-radius:8px;
+  padding:10px 14px;display:flex;align-items:center;gap:8px;
+  border:1.5px solid rgba(255,255,255,.06);
+}
+.discord-input-text{color:#6d6f78;font-size:13.5px;flex:1}
+.discord-slash-chip{
+  background:#5865F2;border-radius:5px;padding:2px 8px;
+  color:#fff;font-size:11px;font-weight:800;
+}
+
+/* id-check box */
+.id-check-box{
+  background:rgba(255,255,255,.55);border:2px solid var(--border);
+  border-radius:14px;padding:18px 20px;
+}
+.id-check-title{font-size:13.5px;font-weight:800;margin-bottom:12px;color:var(--text)}
+.id-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(128,212,171,.25)}
+.id-row:last-child{border-bottom:none}
+.id-icon{font-size:18px;flex-shrink:0;width:28px;text-align:center}
+.id-label{font-size:12px;color:var(--sub);min-width:80px}
+.id-val{font-size:13px;font-weight:800}
+.id-val.ok{color:#2D9E5F}
+.id-val.ng{color:#E05050;text-decoration:line-through;opacity:.7}
+.id-badge{font-size:10px;padding:2px 8px;border-radius:var(--r-badge);font-weight:800;margin-left:6px}
+.id-badge.ok{background:rgba(45,158,95,.15);color:#2D9E5F}
+.id-badge.ng{background:rgba(224,80,80,.12);color:#E05050}
+
+/* discord join btn */
+.discord-join-btn{
   display:flex;align-items:center;justify-content:center;gap:10px;
   background:linear-gradient(135deg,#5865F2,#7289DA);
   color:#fff;border-radius:var(--r-pill);padding:14px 28px;
   font-family:var(--font);font-weight:800;font-size:15px;
   text-decoration:none;box-shadow:0 4px 14px rgba(88,101,242,.4);
-  transition:all .18s;margin-top:14px;
+  transition:all .18s;
 }
-.discord-btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(88,101,242,.5);color:#fff}
+.discord-join-btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(88,101,242,.5);color:#fff}
 .discord-icon{width:22px;height:22px;fill:#fff;flex-shrink:0}
 
-/* register box */
-.register-box{
-  background:linear-gradient(135deg,rgba(82,199,136,.15) 0%,rgba(255,183,197,.15) 100%);
-  border:2px solid var(--border);border-radius:12px;
-  padding:14px 18px;margin-top:12px;
-  font-size:13px;line-height:1.8;
-}
-.register-box code{
-  font-family:var(--mono);background:rgba(45,90,69,.10);
-  padding:2px 8px;border-radius:6px;font-size:13px;
-}
+/* steps connector */
+.steps-flow{display:flex;flex-direction:column;gap:8px;margin-bottom:4px}
+.flow-step{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:800}
+.flow-dot{width:26px;height:26px;border-radius:50%;background:var(--btn-green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;box-shadow:var(--shadow-green)}
+.flow-line{width:2px;height:16px;background:rgba(82,199,136,.35);margin-left:12px}
 
 /* note */
 .note{
   background:rgba(255,183,197,.2);border:1.5px solid rgba(255,122,154,.3);
-  border-radius:var(--r-card);padding:16px 20px;
-  font-size:12.5px;color:#7a3050;line-height:1.75;
+  border-radius:var(--r-card);padding:18px 22px;font-size:13px;color:#7a3050;line-height:1.8;
 }
 .note strong{color:#C0345A}
 
 /* footer */
 footer{
   background:var(--footer-bg);border:2px solid var(--border);
-  border-radius:var(--r-modal);padding:20px;text-align:center;box-shadow:var(--shadow-card);
+  border-radius:var(--r-modal);padding:22px;text-align:center;box-shadow:var(--shadow-card);
 }
 footer p{font-size:12px;color:var(--sub)}
 
 @media(max-width:600px){
   .topnav{padding:0 14px}
   .page{padding:24px 14px 80px}
-  .hero{padding:28px 20px}
-  .step-card{flex-direction:column;gap:10px;padding:18px 18px}
+  .hero{padding:28px 18px}
+  .step-header{padding:18px 18px}
+  .step-content{padding:0 18px 20px;padding-top:16px}
+  .arrow-highlight{display:none}
+  .launcher-body{flex-direction:column;gap:8px}
 }
 </style>
 </head>
@@ -167,61 +270,198 @@ footer p{font-size:12px;color:var(--sub)}
   <!-- Hero -->
   <div class="hero">
     <div class="hero-tag">🔑 参加申請</div>
-    <h1>ホワイトリストに<br><em>登録しよう！</em></h1>
-    <p>Discordで <strong>/register</strong> コマンドを使うだけで<br>自動でサーバーに参加できるようになります 🌿</p>
+    <h1>サーバーに参加するには<br><em>ホワイトリスト登録</em>が必要です</h1>
+    <p>Tsukapyon MC は<strong>ホワイトリスト制</strong>のサーバーです。登録なしではアドレスを知っていても接続できません。<br>Discord で <strong>/register</strong> コマンドを使うだけで登録できます。3ステップで完了！</p>
+    <div class="hero-flow">
+      <div class="flow-item">① Minecraft ID を確認</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item">② Discord に参加</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item">③ /register を送信</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item">✅ 参加OK！</div>
+    </div>
   </div>
 
   <!-- Step 1 -->
   <div class="step-card">
-    <div class="step-num">1</div>
-    <div class="step-body">
-      <div class="step-title">Minecraft IDを確認する</div>
-      <div class="step-desc">Minecraftランチャーを開いて、右上のアカウント名を確認してください。それがあなたの <strong>Minecraft ID</strong> です。</div>
-      <div class="img-hint">
-        💡 ランチャー右上に表示されている名前（例: <strong>Steve</strong>）がIDです。<br>
-        スペースや記号は含まれません。大文字・小文字の区別があります。
+    <div class="step-header">
+      <div class="step-num">1</div>
+      <div class="step-header-text">
+        <div class="step-title">Minecraft ID を確認する</div>
+        <div class="step-meta">Minecraftランチャーの右上に表示されています</div>
       </div>
-      <div class="step-sub">※ Microsoftアカウントのメールアドレスではありません</div>
+    </div>
+    <div class="step-content">
+      <p class="prose"><strong>Minecraft ID（Minecraft ユーザー名）</strong> とは、Minecraft上で他のプレイヤーから見える名前のことです。ランチャーを開いて右上のアカウント欄で確認できます。</p>
+
+      <!-- Launcher mockup -->
+      <div class="mockup-wrap">
+        <div class="launcher-window">
+          <div class="launcher-topbar">
+            <div class="launcher-logo">
+              <div class="launcher-logo-icon">⛏</div>
+              Minecraft Launcher
+            </div>
+            <div class="launcher-account">
+              <div class="account-avatar">🙂</div>
+              <div class="account-name">Steve</div>
+              <div class="account-arrow">▾</div>
+              <div class="arrow-highlight">← これが Minecraft ID ！</div>
+            </div>
+          </div>
+          <div class="launcher-body">
+            <div style="flex:1;color:rgba(255,255,255,.5);font-size:12px;padding-bottom:4px">
+              <div style="color:rgba(255,255,255,.3);font-size:11px;margin-bottom:6px">プロファイル</div>
+              <div class="launcher-profile-pill">forge-1.20.1 ▾</div>
+            </div>
+            <div class="launcher-play-btn">▶ プレイ</div>
+          </div>
+        </div>
+      </div>
+      <div class="mockup-caption">↑ ランチャー右上の名前が Minecraft ID です（例：Steve）</div>
+
+      <!-- ID vs Email check -->
+      <div class="id-check-box">
+        <div class="id-check-title">📋 Minecraft ID の見分け方</div>
+        <div class="id-row">
+          <div class="id-icon">✅</div>
+          <div class="id-label">Minecraft ID</div>
+          <div class="id-val ok">Steve<span class="id-badge ok">正解</span></div>
+        </div>
+        <div class="id-row">
+          <div class="id-icon">✅</div>
+          <div class="id-label">Minecraft ID</div>
+          <div class="id-val ok">TsukaUser123<span class="id-badge ok">正解</span></div>
+        </div>
+        <div class="id-row">
+          <div class="id-icon">❌</div>
+          <div class="id-label">メールアドレス</div>
+          <div class="id-val ng">example@outlook.com<span class="id-badge ng">これは違う</span></div>
+        </div>
+        <div class="id-row">
+          <div class="id-icon">❌</div>
+          <div class="id-label">表示名</div>
+          <div class="id-val ng">スティーブ（日本語名）<span class="id-badge ng">これは違う</span></div>
+        </div>
+      </div>
+
+      <div class="tip-box">
+        <span class="box-label">💡 ランチャーが見つからない場合</span>
+        スタートメニューで「Minecraft Launcher」を検索してください。インストールしていない場合は <strong>minecraft.net</strong> からダウンロードできます。
+      </div>
+
+      <div class="warn-box">
+        <span class="box-label">⚠️ 大文字・小文字に注意！</span>
+        Minecraft IDは大文字・小文字を区別します。<strong>Steve</strong> と <strong>steve</strong> は別の名前です。ランチャーで確認した名前をそのままコピーしてください。
+      </div>
     </div>
   </div>
 
   <!-- Step 2 -->
   <div class="step-card">
-    <div class="step-num">2</div>
-    <div class="step-body">
-      <div class="step-title">Discordサーバーに参加する</div>
-      <div class="step-desc">まだ参加していない場合は、下のボタンからDiscordサーバーに入ってください。</div>
-      <a href="https://discord.gg/6YCSj8RRH" target="_blank" rel="noopener" class="discord-btn">
+    <div class="step-header">
+      <div class="step-num">2</div>
+      <div class="step-header-text">
+        <div class="step-title">Discord サーバーに参加する</div>
+        <div class="step-meta">まだ参加していない場合のみ</div>
+      </div>
+    </div>
+    <div class="step-content">
+      <p class="prose">すでに Tsukapyon MC の Discord サーバーに入っている場合はこのステップは不要です。下のボタンから参加してください。</p>
+
+      <a href="https://discord.gg/6YCSj8RRH" target="_blank" rel="noopener" class="discord-join-btn">
         <svg class="discord-icon" viewBox="0 0 127.14 96.36" xmlns="http://www.w3.org/2000/svg"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></svg>
-        Discordサーバーに参加する
+        Tsukapyon MC Discord に参加する
       </a>
+
+      <div class="tip-box">
+        <span class="box-label">💡 参加後にすること</span>
+        Discord に入ったら、まず<strong>自己紹介・ルール確認チャンネル</strong>を確認してください。ロール（Lv0）が付与されるとサーバーへの参加が可能になります。
+      </div>
     </div>
   </div>
 
   <!-- Step 3 -->
   <div class="step-card">
-    <div class="step-num">3</div>
-    <div class="step-body">
-      <div class="step-title">/register コマンドを送る</div>
-      <div class="step-desc">Discordサーバー内の任意のチャンネルで、以下のコマンドを入力してください。</div>
-      <div class="register-box">
-        <code>/register</code> と入力すると <code>minecraft_id</code> の入力欄が出るので、<br>
-        Step 1 で確認した自分の Minecraft ID を入力して送信！
+    <div class="step-header">
+      <div class="step-num">3</div>
+      <div class="step-header-text">
+        <div class="step-title">/register コマンドを送信する</div>
+        <div class="step-meta">Discord の任意のチャンネルで送れます</div>
       </div>
-      <div class="step-sub" style="margin-top:10px">✅ 送信後、Lv0以上のロールが付いた時点で自動でホワイトリストに追加されます</div>
+    </div>
+    <div class="step-content">
+      <p class="prose">Discord のチャットに <strong>/register</strong> と入力するとコマンドが出てきます。<code>minecraft_id</code> の欄に Step 1 で確認した Minecraft ID を入力して送信してください。</p>
+
+      <!-- Discord mockup -->
+      <div class="mockup-wrap">
+        <div class="discord-window">
+          <div class="discord-topbar">
+            <div class="discord-channel-icon">#</div>
+            <div class="discord-channel-name">一般</div>
+          </div>
+          <div class="discord-chat">
+            <div class="dc-msg">
+              <div class="dc-avatar dc-avatar-user">🙂</div>
+              <div class="dc-body">
+                <div class="dc-name dc-name-user">あなた</div>
+                <div class="dc-text">
+                  <span class="dc-slash">/register</span>
+                  <span style="color:#72767d"> minecraft_id: </span>
+                  <span class="dc-param">Steve</span>
+                </div>
+              </div>
+            </div>
+            <div class="dc-msg">
+              <div class="dc-avatar dc-avatar-bot">🤖</div>
+              <div class="dc-body">
+                <div class="dc-name dc-name-bot">Tsukapyon Bot</div>
+                <div class="dc-text" style="color:#72767d;font-size:12px">botのみ表示（ephemeral）</div>
+                <div class="dc-success">✅ Steve をホワイトリストに追加しました！サーバーに参加できます 🌿</div>
+              </div>
+            </div>
+          </div>
+          <div class="discord-input">
+            <div class="discord-slash-chip">/</div>
+            <div class="discord-input-text">メッセージを送信、または /register と入力</div>
+          </div>
+        </div>
+      </div>
+      <div class="mockup-caption">↑ このような画面になります。返信は自分にしか見えません（ephemeral）</div>
+
+      <div class="tip-box">
+        <span class="box-label">💡 コマンドの使い方</span>
+        <strong>① チャットに <code>/register</code> と入力する</strong><br>
+        → コマンド候補が出るので「register」を選択<br>
+        <strong>② <code>minecraft_id</code> の入力欄に自分の Minecraft ID を入力</strong><br>
+        → 例：<code>Steve</code>（大文字・小文字そのまま）<br>
+        <strong>③ Enter で送信</strong><br>
+        → Bot から「ホワイトリストに追加しました」と返信が来ればOK！
+      </div>
+
+      <div class="ok-box">
+        <div class="ok-icon">✅</div>
+        <div>
+          <strong>Bot から「追加しました」と返ってきたら登録完了！</strong><br>
+          Lv0 以上のロールが付いていれば、すぐにサーバーに接続できます。<br>
+          ロールがまだない場合は管理者（つかぴょん）に声をかけてください。
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- Note -->
+  <!-- トラブル -->
   <div class="note">
-    <strong>⚠️ 参加できないときは？</strong><br>
-    コマンドを送っても参加できない場合、まだロールが付与されていない可能性があります。管理者（つかぴょん）に声をかけてください。<br>
-    また、Minecraft IDは大文字・小文字まで正確に入力してください。
+    <strong>😢 うまくいかないときは？</strong><br>
+    <strong>「ホワイトリストに登録されていません」と言われる</strong> → まだ Lv0 ロールが付いていない可能性があります。Discord で管理者に声をかけてください。<br>
+    <strong>Minecraft ID を間違えた</strong> → もう一度 <code>/register 正しいID</code> を送ると上書き更新されます。<br>
+    <strong>Bot が反応しない</strong> → Bot がオフラインの可能性があります。しばらく待ってから再試行してください。
   </div>
 
   <footer>
     <p>⛏ Tsukapyon MC — Minecraft Java 1.20.1 · Forge 47.4.10</p>
-    <p style="margin-top:4px">困ったことがあればDiscordで管理者に声をかけてね 🌿</p>
+    <p style="margin-top:4px">困ったことがあればDiscordで管理者（つかぴょん）に声をかけてね 🌿</p>
   </footer>
 
 </div>
