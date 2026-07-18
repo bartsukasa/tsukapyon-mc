@@ -687,19 +687,32 @@ footer p { font-size: 12px; color: var(--sub); }
         <button class="step-check" id="sc1" onclick="event.stopPropagation();check(1)" title="完了にする">✓</button>
       </div>
       <div class="step-body" id="sb1" style="display:none">
-        <p class="prose">このサーバーは <strong>Java版（PC版）</strong> 専用です。Minecraft Launcherがまだ入っていない方は公式サイトから入手してください。</p>
+        <p class="prose">このサーバーは <strong>Java版（PC版）</strong> 専用です。まだMinecraftを持っていない場合は、まず購入が必要です。すでにJava版を持っている方はStep 2へ進んでください。</p>
+
+        <div class="tip-box">
+          <span class="box-label">📦 Minecraftを持っていない場合</span>
+          公式サイト（<strong>minecraft.net</strong>）でJava版を購入できます。一度購入すれば永久に遊べます。
+        </div>
+
+        <p class="prose"><strong>① Minecraft Launcherをダウンロード</strong></p>
         <div class="copy-box">
-          <div class="copy-label">公式ダウンロード</div>
+          <div class="copy-label">公式ダウンロードページ</div>
           <div class="copy-row">
             <div class="copy-val">https://www.minecraft.net/ja-jp/download</div>
             <button class="copy-btn" onclick="cp(this,'https://www.minecraft.net/ja-jp/download')">コピー</button>
           </div>
         </div>
+
+        <p class="prose"><strong>② LauncherでJava版 1.20.1 を一度起動しておく</strong><br>
+        Forgeのインストールには、事前に該当バージョンのゲームファイルが必要です。<br>
+        Launcher左下のプロファイルで <code>1.20.1</code> を選んで一度PLAYし、タイトル画面が出たらすぐ閉じてOKです。</p>
+
         <div class="warn-box">
           <span class="box-label">❌ これでは参加できません</span>
           Nintendo Switch版・スマートフォン版・Xbox版（統合版/Bedrock Edition）はこのサーバーに接続できません。必ず <strong>PCのJava版</strong> を使ってください。
         </div>
-        <div class="ok-box"><div class="ok-icon">✓</div><div class="ok-text"><strong>確認：</strong> Minecraft Launcherを起動してタイトル画面が表示されればOK！</div></div>
+
+        <div class="ok-box"><div class="ok-icon">✓</div><div class="ok-text"><strong>確認：</strong> Minecraft Launcherを起動してタイトル画面が一度表示されればOK！</div></div>
       </div>
     </div>
 
@@ -714,17 +727,30 @@ footer p { font-size: 12px; color: var(--sub); }
         <button class="step-check" id="sc2" onclick="event.stopPropagation();check(2)" title="完了にする">✓</button>
       </div>
       <div class="step-body" id="sb2" style="display:none">
-        <p class="prose">MODを動かすための「Forge」をインストールします。<strong>バージョンが1文字でも違うと接続できない</strong>ので、必ず以下のリンクを使ってください！</p>
+        <p class="prose">「Forge」はMinecraftにMODを追加するための土台です。<strong>バージョンが1文字でも違うとサーバーに接続できません。</strong>かならず以下のボタンから直接ダウンロードしてください。</p>
+
+        <p class="prose"><strong>① インストーラーをダウンロード</strong></p>
         <div class="copy-box">
-          <div class="copy-label">① インストーラーをダウンロード</div>
+          <div class="copy-label">Forgeインストーラー（バージョン固定リンク）</div>
           <div class="copy-row">
             <div class="copy-val">forge-1.20.1-47.4.10-installer.jar（5.8 MB）</div>
             <button class="copy-btn" onclick="window.open('https://github.com/bartsukasa/tsukapyon-mc/releases/download/v1.0/forge-1.20.1-47.4.10-installer.jar')">DL</button>
           </div>
         </div>
-        <p class="prose">② ダウンロードした <code>.jar</code> をダブルクリック。<strong>「Install client」</strong> を選んで OK！</p>
+
+        <div class="tip-box">
+          <span class="box-label">💡 .jar ファイルが開けない場合</span>
+          「Javaが見つかりません」というエラーが出る場合は、<strong>Java 21（Temurin）</strong>をインストールしてください。<br>
+          ダウンロード先：<code>https://adoptium.net/temurin/releases/?version=21</code><br>
+          「Windows x64 .msi」を選んでインストールすれば解決します。
+        </div>
+
+        <p class="prose"><strong>② .jar ファイルをダブルクリックして起動</strong><br>
+        ダウンロードした <code>forge-1.20.1-47.4.10-installer.jar</code> をダブルクリックするとインストーラーが開きます。</p>
+
+        <p class="prose"><strong>③「Install client」を選んで OK をクリック</strong></p>
         <div class="forge-dialog">
-          <div class="forge-title">Forge Installer</div>
+          <div class="forge-title">Forge Installer 1.20.1-47.4.10</div>
           <div class="forge-option selected">
             <div class="forge-radio"></div>
             <span><strong>Install client</strong></span>
@@ -734,20 +760,26 @@ footer p { font-size: 12px; color: var(--sub); }
             <div class="forge-radio"></div>
             <span>Install server</span>
           </div>
+          <div class="forge-option dim">
+            <div class="forge-radio"></div>
+            <span>Extract</span>
+          </div>
           <div class="forge-btns">
             <button class="forge-btn cancel">Cancel</button>
             <button class="forge-btn ok">OK</button>
           </div>
         </div>
+
+        <p class="prose">インストール先のフォルダは<strong>変更不要</strong>です。デフォルトのまま OK を押してください。<br>
+        数分でインストールが完了します。完了後は「OK」を押してインストーラーを閉じてください。</p>
+
         <div class="warn-box">
-          <span class="box-label">❌ よくあるミス</span>
-          Forgeの公式サイトの「Recommended」「Latest」ボタンを押すと<strong>別バージョン</strong>がインストールされます。必ず上記のリンクから <strong>47.4.10</strong> を直接ダウンロードしてください！
+          <span class="box-label">❌ よくあるミス — Forgeの公式サイトを使わない</span>
+          Forgeの公式サイト（<code>files.minecraftforge.net</code>）の「Recommended」「Latest」ボタンをクリックすると<strong>別のバージョン</strong>がインストールされてしまいます。<br>
+          必ず<strong>上のDLボタン</strong>から <code>47.4.10</code> を直接ダウンロードしてください！
         </div>
-        <div class="tip-box">
-          <span class="box-label">💡 Javaがない場合</span>
-          「Javaが見つかりません」エラーが出た場合は <strong>Java 21（Temurin）</strong> をインストールしてから再試行してください。
-        </div>
-        <div class="ok-box"><div class="ok-icon">✓</div><div class="ok-text"><strong>確認：</strong>「Successfully installed client profile forge for version 1.20.1-47.4.10」と表示されたら完了！</div></div>
+
+        <div class="ok-box"><div class="ok-icon">✓</div><div class="ok-text"><strong>確認：</strong>「Successfully installed client profile Forge for version 1.20.1-47.4.10」と表示されたら完了！「OK」を押して閉じてください。</div></div>
       </div>
     </div>
 
@@ -762,16 +794,30 @@ footer p { font-size: 12px; color: var(--sub); }
         <button class="step-check" id="sc3" onclick="event.stopPropagation();check(3)" title="完了にする">✓</button>
       </div>
       <div class="step-body" id="sb3" style="display:none">
+        <p class="prose">サーバーで使っている71個のMODを、まとめてダウンロードして設置します。</p>
+
+        <p class="prose"><strong>① mods.zip をダウンロード</strong></p>
         <div class="copy-box">
-          <div class="copy-label">① mods.zip をダウンロード</div>
+          <div class="copy-label">MODセット一括ダウンロード</div>
           <div class="copy-row">
             <div class="copy-val">mods.zip（約103 MB・71個入り）</div>
             <button class="copy-btn" onclick="window.open('https://github.com/bartsukasa/tsukapyon-mc/releases/download/v1.0/mods.zip')">DL</button>
           </div>
         </div>
-        <p class="prose"><strong>② modsフォルダを開く</strong><br>キーボードの <code>Windowsキー + R</code> を押して、以下を貼り付けてEnterキー！</p>
+
+        <p class="prose"><strong>② mods.zip を解凍する</strong><br>
+        ダウンロードした <code>mods.zip</code> を右クリックして「<strong>すべて展開...</strong>」を選択。<br>
+        解凍先はどこでも大丈夫です（デスクトップなど）。解凍するとフォルダが作られ、中に <code>.jar</code> ファイルが71個入っています。</p>
+
+        <div class="warn-box">
+          <span class="box-label">❌ zip のまま入れても動きません</span>
+          <code>mods.zip</code> を直接 mods フォルダに入れてもMODは読み込まれません。必ず<strong>解凍してから</strong> .jar ファイルをコピーしてください。
+        </div>
+
+        <p class="prose"><strong>③ modsフォルダを開く</strong><br>
+        キーボードの <code>Windowsキー + R</code> を同時に押して「ファイル名を指定して実行」を開き、以下をコピペしてEnterキーを押してください。</p>
         <div class="copy-box">
-          <div class="copy-label">「ファイル名を指定して実行」に入力</div>
+          <div class="copy-label">「ファイル名を指定して実行」に入力してEnter</div>
           <div class="copy-row">
             <div class="copy-val">%AppData%\.minecraft\mods</div>
             <button class="copy-btn" onclick="cp(this,'%AppData%\\.minecraft\\mods')">コピー</button>
@@ -786,13 +832,22 @@ footer p { font-size: 12px; color: var(--sub); }
             <button class="run-btn ok">OK</button>
           </div>
         </div>
-        <p class="prose"><strong>③ mods.zip を解凍してコピー</strong><br>ダウンロードした <code>mods.zip</code> を右クリック→「すべて展開」で解凍。解凍後の <strong>.jar ファイルをすべて</strong> modsフォルダにドラッグ＆ドロップ！</p>
-        <div class="warn-box">
-          <span class="box-label">❌ よくあるミス</span>
-          <strong>zipファイルのまま入れない</strong>こと。必ず解凍してから .jar ファイルをコピーしてください。<br>
-          また <strong>一部のファイルだけ入れても動きません</strong>。71個すべてが必要です。
+
+        <div class="tip-box">
+          <span class="box-label">💡 mods フォルダが存在しない場合</span>
+          <code>.minecraft</code> フォルダの中に <code>mods</code> フォルダがなければ、新規作成してください。<br>
+          フォルダ内で右クリック →「新規作成」→「フォルダー」→ フォルダ名を <code>mods</code> にすればOKです。
         </div>
-        <div class="ok-box"><div class="ok-icon">✓</div><div class="ok-text"><strong>確認：</strong> modsフォルダに <strong>.jar ファイルが70個以上</strong> 入っていればOK！</div></div>
+
+        <p class="prose"><strong>④ .jar ファイルをすべてコピー</strong><br>
+        解凍してできたフォルダを開き、中の <strong>.jar ファイルをすべて選択</strong>（<code>Ctrl + A</code>）して、開いた modsフォルダにドラッグ＆ドロップします。</p>
+
+        <div class="warn-box">
+          <span class="box-label">❌ よくあるミス — フォルダごとコピーしない</span>
+          解凍後にできる<strong>フォルダ</strong>をそのまま mods フォルダに入れてもMODは読み込まれません。フォルダの<strong>中にある .jar ファイル</strong>をコピーしてください。
+        </div>
+
+        <div class="ok-box"><div class="ok-icon">✓</div><div class="ok-text"><strong>確認：</strong> modsフォルダを開いて <strong>.jar ファイルが70個以上</strong> 並んでいればOK！</div></div>
       </div>
     </div>
 
@@ -807,35 +862,62 @@ footer p { font-size: 12px; color: var(--sub); }
         <button class="step-check" id="sc4" onclick="event.stopPropagation();check(4)" title="完了にする">✓</button>
       </div>
       <div class="step-body" id="sb4" style="display:none">
-        <p class="prose">Minecraft Launcherを開き、左下のプロファイル欄から <strong>「forge-1.20.1」</strong> を選んでPLAYをクリック！</p>
+        <p class="prose">Forgeをインストールすると、Minecraft Launcherに「forge-1.20.1」という新しいプロファイルが追加されます。<strong>このプロファイルで起動しないとMODが動きません。</strong></p>
+
+        <p class="prose"><strong>① Minecraft Launcher を開く</strong><br>
+        Launcherを開くと、画面の左下にプロファイル（起動構成）の選択欄があります。</p>
+
         <div class="mock-window">
           <div class="mock-bar"><div class="mock-dot r"></div><div class="mock-dot y"></div><div class="mock-dot g"></div><span>Minecraft Launcher</span></div>
           <div class="mock-body" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
             <div style="background:rgba(255,255,255,.7);border:2px solid #52C788;border-radius:var(--r-pill);padding:8px 18px;display:flex;align-items:center;gap:10px;box-shadow:0 0 0 3px rgba(82,199,136,.2)">
               <div>
-                <div style="font-size:10px;color:var(--sub);font-weight:800">プロファイル</div>
-                <div style="font-weight:800;color:#2D6A4A">forge-1.20.1 ← これ！</div>
+                <div style="font-size:10px;color:var(--sub);font-weight:800">左下のプロファイル欄</div>
+                <div style="font-weight:800;color:#2D6A4A">forge-1.20.1 ← これを選ぶ！</div>
               </div>
               <span style="color:var(--sub)">▼</span>
             </div>
             <div style="background:var(--btn-green);color:#fff;border-radius:var(--r-pill);padding:10px 28px;font-weight:800;box-shadow:var(--shadow-green);font-size:14px">▶ PLAY</div>
           </div>
         </div>
-        <p class="prose">起動したら、タイトル画面に <strong style="color:#2D9E5F">「Mods」ボタン</strong> が表示されていることを確認！</p>
+
+        <p class="prose"><strong>② プロファイルを「forge-1.20.1」に切り替えて PLAY</strong><br>
+        プロファイル欄の ▼ をクリックして一覧を開き、<code>forge-1.20.1</code> を選択してから PLAY ボタンを押してください。<br>
+        初回起動時はMODの読み込みに <strong>2〜5分ほど</strong> かかることがあります。黒い画面のまましばらく待ってください。</p>
+
+        <div class="tip-box">
+          <span class="box-label">💡 メモリ割り当てを増やすと快適に</span>
+          71個のMODは重いため、<strong>4GB以上</strong>のメモリ割り当てを推奨します。<br>
+          Launcher → 起動構成 → forge-1.20.1 の鉛筆アイコン → 「詳細設定」→「JVM引数」の<br>
+          <code>-Xmx2G</code> の部分を <code>-Xmx4G</code>（または <code>-Xmx6G</code>）に変更してください。
+        </div>
+
+        <p class="prose"><strong>③ タイトル画面に「Mods」ボタンが表示されることを確認</strong></p>
         <div class="mc-screen">
           <div class="mc-logo">MINECRAFT</div>
           <div class="mc-menu">
             <div class="mc-btn-item">シングルプレイ</div>
             <div class="mc-btn-item">マルチプレイ</div>
-            <div class="mc-btn-item glow">Mods ← これが出ればOK！</div>
+            <div class="mc-btn-item glow">Mods ← ここが光ってればOK！</div>
             <div class="mc-btn-item">設定</div>
+            <div class="mc-btn-item">終了</div>
           </div>
         </div>
+        <p class="prose">「Mods」ボタンをクリックするとインストール済みのMOD一覧が確認できます。<strong>71 mods loaded</strong> と表示されていれば完璧です！</p>
+
         <div class="warn-box">
-          <span class="box-label">❌ よくあるミス</span>
-          「1.20.1」（バニラ）プロファイルで起動するとModsボタンが出ません。<strong>かならず「forge-1.20.1」</strong> を選んでください！
+          <span class="box-label">❌「Mods」ボタンが出ない場合</span>
+          プロファイルが <code>forge-1.20.1</code> ではなく <code>1.20.1</code>（バニラ）や <code>Latest release</code> になっています。<br>
+          左下のプロファイル欄をもう一度確認して <code>forge-1.20.1</code> に切り替えてください。
         </div>
-        <div class="ok-box"><div class="ok-icon">✓</div><div class="ok-text"><strong>確認：</strong> タイトル画面に「Mods」ボタンが表示されていればOK！</div></div>
+
+        <div class="warn-box">
+          <span class="box-label">❌ 起動中にクラッシュする場合</span>
+          modsフォルダに不要なファイルが混入している可能性があります。<br>
+          <strong>クライアント不要のMOD</strong>（<code>Chunk-Pregenerator</code>・<code>spark</code>・<code>ftb-backups</code>など）が入っていたら削除してください。
+        </div>
+
+        <div class="ok-box"><div class="ok-icon">✓</div><div class="ok-text"><strong>確認：</strong> タイトル画面に「Mods」ボタンが表示されていればOK！クリックして MOD 数を確認するとさらに安心です。</div></div>
       </div>
     </div>
 
@@ -850,9 +932,17 @@ footer p { font-size: 12px; color: var(--sub); }
         <button class="step-check" id="sc5" onclick="event.stopPropagation();check(5)" title="完了にする">✓</button>
       </div>
       <div class="step-body" id="sb5" style="display:none">
-        <p class="prose">タイトル画面 → <strong>マルチプレイ</strong> → <strong>サーバーを追加</strong> を選び、アドレスを入力します。</p>
+        <p class="prose">いよいよ最後のステップです！タイトル画面からサーバーを登録して接続します。</p>
+
+        <p class="prose"><strong>① タイトル画面で「マルチプレイ」をクリック</strong><br>
+        初回は「オンラインプレイは18歳以上対象です」という確認画面が出ることがあります。「進む」を押してください。</p>
+
+        <p class="prose"><strong>② 「サーバーを追加」をクリック</strong><br>
+        サーバー一覧画面の下にある「<strong>サーバーを追加</strong>」ボタンを押すと、登録画面が開きます。</p>
+
+        <p class="prose"><strong>③ サーバー名とアドレスを入力</strong></p>
         <div class="copy-box">
-          <div class="copy-label">サーバーアドレス</div>
+          <div class="copy-label">サーバーアドレス（コピーして貼り付け）</div>
           <div class="copy-row">
             <div class="copy-val">sign-stress.gl.joinmc.link</div>
             <button class="copy-btn" onclick="cp(this,'sign-stress.gl.joinmc.link')">コピー</button>
@@ -860,20 +950,34 @@ footer p { font-size: 12px; color: var(--sub); }
         </div>
         <div class="addr-card">
           <div class="addr-field">
-            <div class="addr-field-label">サーバー名（任意）</div>
+            <div class="addr-field-label">サーバー名（好きな名前でOK）</div>
             <div class="addr-field-val">Tsukapyon MC</div>
           </div>
           <div class="addr-field">
-            <div class="addr-field-label">サーバーアドレス ← ここに貼り付け！</div>
+            <div class="addr-field-label">サーバーアドレス ← 上のアドレスをここに貼り付け！</div>
             <div class="addr-field-val highlight">sign-stress.gl.joinmc.link</div>
           </div>
-          <div style="font-size:11px;color:var(--sub);margin-top:2px">ポート番号（:25565）は入力不要です</div>
+          <div style="font-size:11px;color:var(--sub);margin-top:4px">⚠️ ポート番号（:25565 など）は<strong>入力しないで</strong>ください</div>
         </div>
+
+        <p class="prose"><strong>④「完了」を押してサーバー一覧に戻る</strong><br>
+        一覧にサーバーが追加されます。サーバーアイコンの下に <strong>「〇人のプレイヤー」</strong> と表示されればサーバーと通信できています。</p>
+
         <div class="tip-box">
-          <span class="box-label">✅ ポート番号は不要</span>
-          「:25565」などは入力しなくてOKです。アドレスをそのままコピペしてください。
+          <span class="box-label">💡 サーバーが「オフライン」と表示される場合</span>
+          サーバーが停止中か、再起動中の可能性があります。Discordの <strong>#bot チャンネル</strong>でサーバーの状態を確認してください。定期再起動（0・4・8・12・16・20時）の前後5分ほどは繋がりにくくなります。
         </div>
-        <div class="ok-box"><div class="ok-icon">🎉</div><div class="ok-text"><strong>完了！</strong> サーバー一覧にTsukapyon MCが表示されたら、ダブルクリックで参加できます！</div></div>
+
+        <p class="prose"><strong>⑤ サーバーをダブルクリックして参加！</strong><br>
+        接続できたら初回ログイン時に<strong>スターターキット</strong>（バックパック・食料・石ツール・松明・地図）が自動で届きます。</p>
+
+        <div class="warn-box">
+          <span class="box-label">❌「MODが一致しない」エラーで弾かれる場合</span>
+          クライアントのMODとサーバーのMODが合っていません。<br>
+          mods.zip を<strong>最新版に再ダウンロード</strong>して、modsフォルダを一旦空にしてから入れ直してください。
+        </div>
+
+        <div class="ok-box"><div class="ok-icon">🎉</div><div class="ok-text"><strong>お疲れさまでした！</strong> 無事に接続できたら準備完了です。困ったことがあればDiscordや管理者（つかぴょん）に気軽に聞いてください！</div></div>
       </div>
     </div>
 
