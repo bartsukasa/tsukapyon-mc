@@ -666,15 +666,17 @@ footer p { font-size: 12px; color: var(--sub); }
     <div class="section-desc">上から順に進めてください。完了したらチェックを入れましょう！</div>
 
     <div class="progress-bar" style="margin-bottom:20px">
-      <div class="prog-item" onclick="document.getElementById('step1').scrollIntoView({behavior:'smooth'})"><div class="prog-dot" id="pd1">1</div>Java版</div>
+      <div class="prog-item" onclick="document.getElementById('step1').scrollIntoView({behavior:'smooth'})"><div class="prog-dot" id="pd1">1</div>申請</div>
       <div class="prog-conn" id="pc1"></div>
-      <div class="prog-item" onclick="document.getElementById('step2').scrollIntoView({behavior:'smooth'})"><div class="prog-dot" id="pd2">2</div>Forge</div>
+      <div class="prog-item" onclick="document.getElementById('step2').scrollIntoView({behavior:'smooth'})"><div class="prog-dot" id="pd2">2</div>Java版</div>
       <div class="prog-conn" id="pc2"></div>
-      <div class="prog-item" onclick="document.getElementById('step3').scrollIntoView({behavior:'smooth'})"><div class="prog-dot" id="pd3">3</div>MOD</div>
+      <div class="prog-item" onclick="document.getElementById('step3').scrollIntoView({behavior:'smooth'})"><div class="prog-dot" id="pd3">3</div>Forge</div>
       <div class="prog-conn" id="pc3"></div>
-      <div class="prog-item" onclick="document.getElementById('step4').scrollIntoView({behavior:'smooth'})"><div class="prog-dot" id="pd4">4</div>起動</div>
+      <div class="prog-item" onclick="document.getElementById('step4').scrollIntoView({behavior:'smooth'})"><div class="prog-dot" id="pd4">4</div>MOD</div>
       <div class="prog-conn" id="pc4"></div>
-      <div class="prog-item" onclick="document.getElementById('step5').scrollIntoView({behavior:'smooth'})"><div class="prog-dot" id="pd5">5</div>接続</div>
+      <div class="prog-item" onclick="document.getElementById('step5').scrollIntoView({behavior:'smooth'})"><div class="prog-dot" id="pd5">5</div>起動</div>
+      <div class="prog-conn" id="pc5"></div>
+      <div class="prog-item" onclick="document.getElementById('step6').scrollIntoView({behavior:'smooth'})"><div class="prog-dot" id="pd6">6</div>接続</div>
     </div>
 
     <!-- Step 1 -->
@@ -682,12 +684,39 @@ footer p { font-size: 12px; color: var(--sub); }
       <div class="step-head" onclick="toggleStep(1)">
         <div class="step-n" id="sn1">1</div>
         <div class="step-title-wrap">
-          <div class="step-title">Java版 Minecraft を用意する</div>
-          <div class="step-meta">PC専用。Switch・スマホ版では参加できません</div>
+          <div class="step-title">ホワイトリストに登録する</div>
+          <div class="step-meta">登録しないとサーバーに入れません。まず最初に！</div>
         </div>
         <button class="step-check" id="sc1" onclick="event.stopPropagation();check(1)" title="完了にする">✓</button>
       </div>
       <div class="step-body" id="sb1" style="display:none">
+        <p class="prose">このサーバーは<strong>ホワイトリスト制</strong>です。登録なしではサーバーに接続できません。まずDiscordで申請を済ませてください。</p>
+
+        <div class="tip-box">
+          <span class="box-label">🔑 登録の流れ</span>
+          <strong>① Minecraftランチャーを開いて右上のアカウント名（Minecraft ID）を確認する</strong><br>
+          <strong>② Discordサーバーに参加する</strong>（まだの場合）<br>
+          <strong>③ Discordで <code>/register あなたのMinecraftID</code> を送信する</strong><br>
+          Lv0以上のロールが付いた時点で自動的にホワイトリストに追加されます。
+        </div>
+
+        <a href="whitelist.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--btn-pink);color:#fff;border-radius:var(--r-pill);padding:10px 20px;font-weight:800;font-size:13px;text-decoration:none;box-shadow:var(--shadow-pink);margin-top:4px">🔑 ホワイトリスト申請ページへ →</a>
+
+        <div class="ok-box"><div class="ok-icon">✓</div><div class="ok-text"><strong>確認：</strong> Discordで <code>/register</code> を送信し「ホワイトリストに追加しました」と返ってきたらOK！</div></div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step-card" id="step2">
+      <div class="step-head" onclick="toggleStep(2)">
+        <div class="step-n" id="sn2">2</div>
+        <div class="step-title-wrap">
+          <div class="step-title">Java版 Minecraft を用意する</div>
+          <div class="step-meta">PC専用。Switch・スマホ版では参加できません</div>
+        </div>
+        <button class="step-check" id="sc2" onclick="event.stopPropagation();check(2)" title="完了にする">✓</button>
+      </div>
+      <div class="step-body" id="sb2" style="display:none">
         <p class="prose">このサーバーは <strong>Java版（PC版）</strong> 専用です。まだMinecraftを持っていない場合は、まず購入が必要です。すでにJava版を持っている方はStep 2へ進んでください。</p>
 
         <div class="tip-box">
@@ -717,17 +746,17 @@ footer p { font-size: 12px; color: var(--sub); }
       </div>
     </div>
 
-    <!-- Step 2 -->
-    <div class="step-card" id="step2">
-      <div class="step-head" onclick="toggleStep(2)">
-        <div class="step-n" id="sn2">2</div>
+    <!-- Step 3 -->
+    <div class="step-card" id="step3">
+      <div class="step-head" onclick="toggleStep(3)">
+        <div class="step-n" id="sn3">3</div>
         <div class="step-title-wrap">
           <div class="step-title">Forge をインストールする</div>
           <div class="step-meta">バージョンは必ず 1.20.1–47.4.10（違うと接続不可）</div>
         </div>
-        <button class="step-check" id="sc2" onclick="event.stopPropagation();check(2)" title="完了にする">✓</button>
+        <button class="step-check" id="sc3" onclick="event.stopPropagation();check(3)" title="完了にする">✓</button>
       </div>
-      <div class="step-body" id="sb2" style="display:none">
+      <div class="step-body" id="sb3" style="display:none">
         <p class="prose">「Forge」はMinecraftにMODを追加するための土台です。<strong>バージョンが1文字でも違うとサーバーに接続できません。</strong>かならず以下のボタンから直接ダウンロードしてください。</p>
 
         <p class="prose"><strong>① インストーラーをダウンロード</strong></p>
@@ -784,17 +813,17 @@ footer p { font-size: 12px; color: var(--sub); }
       </div>
     </div>
 
-    <!-- Step 3 -->
-    <div class="step-card" id="step3">
-      <div class="step-head" onclick="toggleStep(3)">
-        <div class="step-n" id="sn3">3</div>
+    <!-- Step 4 -->
+    <div class="step-card" id="step4">
+      <div class="step-head" onclick="toggleStep(4)">
+        <div class="step-n" id="sn4">4</div>
         <div class="step-title-wrap">
           <div class="step-title">MOD を全部インストールする</div>
           <div class="step-meta">mods.zip をダウンロードして解凍します</div>
         </div>
-        <button class="step-check" id="sc3" onclick="event.stopPropagation();check(3)" title="完了にする">✓</button>
+        <button class="step-check" id="sc4" onclick="event.stopPropagation();check(4)" title="完了にする">✓</button>
       </div>
-      <div class="step-body" id="sb3" style="display:none">
+      <div class="step-body" id="sb4" style="display:none">
         <p class="prose">サーバーで使っている71個のMODを、まとめてダウンロードして設置します。</p>
 
         <p class="prose"><strong>① mods.zip をダウンロード</strong></p>
@@ -852,17 +881,17 @@ footer p { font-size: 12px; color: var(--sub); }
       </div>
     </div>
 
-    <!-- Step 4 -->
-    <div class="step-card" id="step4">
-      <div class="step-head" onclick="toggleStep(4)">
-        <div class="step-n" id="sn4">4</div>
+    <!-- Step 5 -->
+    <div class="step-card" id="step5">
+      <div class="step-head" onclick="toggleStep(5)">
+        <div class="step-n" id="sn5">5</div>
         <div class="step-title-wrap">
           <div class="step-title">Forgeプロファイルで起動する</div>
           <div class="step-meta">「forge-1.20.1」を選ぶのがポイント</div>
         </div>
-        <button class="step-check" id="sc4" onclick="event.stopPropagation();check(4)" title="完了にする">✓</button>
+        <button class="step-check" id="sc5" onclick="event.stopPropagation();check(5)" title="完了にする">✓</button>
       </div>
-      <div class="step-body" id="sb4" style="display:none">
+      <div class="step-body" id="sb5" style="display:none">
         <p class="prose">Forgeをインストールすると、Minecraft Launcherに「forge-1.20.1」という新しいプロファイルが追加されます。<strong>このプロファイルで起動しないとMODが動きません。</strong></p>
 
         <p class="prose"><strong>① Minecraft Launcher を開く</strong><br>
@@ -922,17 +951,17 @@ footer p { font-size: 12px; color: var(--sub); }
       </div>
     </div>
 
-    <!-- Step 5 -->
-    <div class="step-card" id="step5">
-      <div class="step-head" onclick="toggleStep(5)">
-        <div class="step-n" id="sn5">5</div>
+    <!-- Step 6 -->
+    <div class="step-card" id="step6">
+      <div class="step-head" onclick="toggleStep(6)">
+        <div class="step-n" id="sn6">6</div>
         <div class="step-title-wrap">
           <div class="step-title">サーバーに接続する</div>
           <div class="step-meta">アドレスをコピペするだけ！</div>
         </div>
-        <button class="step-check" id="sc5" onclick="event.stopPropagation();check(5)" title="完了にする">✓</button>
+        <button class="step-check" id="sc6" onclick="event.stopPropagation();check(6)" title="完了にする">✓</button>
       </div>
-      <div class="step-body" id="sb5" style="display:none">
+      <div class="step-body" id="sb6" style="display:none">
         <p class="prose">いよいよ最後のステップです！タイトル画面からサーバーを登録して接続します。</p>
 
         <p class="prose"><strong>① タイトル画面で「マルチプレイ」をクリック</strong><br>
@@ -1069,7 +1098,7 @@ footer p { font-size: 12px; color: var(--sub); }
 </div>
 
 <script>
-const st = {1:false,2:false,3:false,4:false,5:false};
+const st = {1:false,2:false,3:false,4:false,5:false,6:false};
 
 function cp(btn, text) {
   navigator.clipboard?.writeText(text);
