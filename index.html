@@ -611,7 +611,7 @@ footer p { font-size: 12px; color: var(--text-dim); }
     <a href="#rules"       class="nav-link">ルール</a>
     <a href="#mods"        class="nav-link">MOD</a>
     <a href="#faq"         class="nav-link">FAQ</a>
-    <a href="#changelog"   class="nav-link">更新履歴</a>
+    <a href="#topics"      class="nav-link">トピックス</a>
   </div>
   <div class="nav-right">
     <a href="whitelist.html" class="nav-btn nav-btn-ghost">🔑 参加申請</a>
@@ -653,6 +653,26 @@ footer p { font-size: 12px; color: var(--text-dim); }
       <a href="mods.html" class="h-btn h-btn-outline">MOD一覧</a>
       <a href="https://github.com/bartsukasa/tsukapyon-mc/releases/download/v1.0/mods.zip"
          class="h-btn h-btn-outline">mods.zip DL</a>
+    </div>
+  </div>
+
+  <!-- Topics -->
+  <div id="topics">
+    <div class="sec-label">// TOPICS</div>
+    <div class="sec-title">トピックス</div>
+    <div class="sec-desc" style="margin-bottom:20px">サーバーの最新情報・更新履歴です。</div>
+    <div class="card">
+      <div class="changelog">
+        <div class="cl-entry"><div class="cl-date">07/26</div><div class="cl-dot new"></div><div class="cl-content"><span class="cl-tag feature">設定変更</span><div class="cl-body">定期再起動を <strong>4時・16時</strong> の1日2回に変更。サーバーアイコンをカスタム画像に更新。</div></div></div>
+        <div class="cl-entry"><div class="cl-date">07/25</div><div class="cl-dot new"></div><div class="cl-content"><span class="cl-tag feature">機能追加</span><div class="cl-body"><strong>両サーバー並行稼働</strong>に移行。Forge MOD（<code>tsukapyon.playit.plus</code>）と OneBlock（<code>oneblock.playit.plus</code>）が常時同時稼働するようになりました。</div></div></div>
+        <div class="cl-entry"><div class="cl-date">07/25</div><div class="cl-dot new"></div><div class="cl-content"><span class="cl-tag feature">機能追加</span><div class="cl-body"><strong>ホワイトリスト制</strong>を導入。Discordで <code>/register</code> コマンドを使ってMinecraft IDを登録することで参加できます。</div></div></div>
+        <div class="cl-entry"><div class="cl-date">07/25</div><div class="cl-dot fix"></div><div class="cl-content"><span class="cl-tag fix">Bot更新</span><div class="cl-body">Discord Botを更新。個別サーバーの起動・停止・再起動コマンドを追加。</div></div></div>
+        <div class="cl-entry"><div class="cl-date">07/18</div><div class="cl-dot new"></div><div class="cl-content"><span class="cl-tag mod">MOD追加</span><div class="cl-body"><strong>FerriteCore 6.0.1</strong> を追加。メモリ最適化・起動時警告が解消されます。</div></div></div>
+        <div class="cl-entry"><div class="cl-date">07/18</div><div class="cl-dot fix"></div><div class="cl-content"><span class="cl-tag fix">不具合修正</span><div class="cl-body"><strong>Valhelsia Furniture 1.1.2 → 1.1.3</strong> に更新。テーブル・チェア・カーテンが正常にクラフトできるようになりました。</div></div></div>
+        <div class="cl-entry"><div class="cl-date">07/15</div><div class="cl-dot feat"></div><div class="cl-content"><span class="cl-tag feature">機能追加</span><div class="cl-body"><strong>Discord Bot</strong> を導入。#botチャンネルでサーバー状況をリアルタイム確認できます。</div></div></div>
+        <div class="cl-entry"><div class="cl-date">07/14</div><div class="cl-dot feat"></div><div class="cl-content"><span class="cl-tag feature">機能追加</span><div class="cl-body"><strong>スターターキット</strong>を実装。初回ログイン時にバックパック・食料・石ツール・松明・地図が配布されます。</div></div></div>
+        <div class="cl-entry"><div class="cl-date">07/13</div><div class="cl-dot new"></div><div class="cl-content"><span class="cl-tag mod">開設</span><div class="cl-body"><strong>Tsukapyon MC</strong> サーバー開設。Forge 1.20.1・71個のMODでスタート！</div></div></div>
+      </div>
     </div>
   </div>
 
@@ -699,7 +719,7 @@ footer p { font-size: 12px; color: var(--text-dim); }
       </div>
       <div class="info-card">
         <div class="info-label">定期再起動</div>
-        <div class="info-val" style="font-size:14px">0・4・8・12<br>16・20時</div>
+        <div class="info-val" style="font-size:14px">4時・16時</div>
         <div class="info-sub">30分前から通知あり</div>
       </div>
     </div>
@@ -1048,7 +1068,7 @@ footer p { font-size: 12px; color: var(--text-dim); }
           少し待つとサーバーアイコンの下に <strong>「〇人のプレイヤーがオンライン」</strong> と表示されます。</p>
           <div class="warn-box">
             <span class="box-label">⚠️「オフライン」「接続できません」と表示される場合</span>
-            サーバーが停止中か再起動中の可能性があります。Discordの <strong>#bot チャンネル</strong> でサーバーの状態を確認してください。定期再起動（0・4・8・12・16・20時）の前後5分ほどは繋がりにくくなります。
+            サーバーが停止中か再起動中の可能性があります。Discordの <strong>#bot チャンネル</strong> でサーバーの状態を確認してください。定期再起動（4時・16時）の前後5分ほどは繋がりにくくなります。
           </div>
           <p class="prose"><strong>⑤ サーバーをダブルクリックして参加！</strong></p>
           <div class="warn-box">
@@ -1126,26 +1146,6 @@ footer p { font-size: 12px; color: var(--text-dim); }
     </div>
   </div>
 
-  <!-- Changelog -->
-  <div id="changelog">
-    <div class="sec-label">// CHANGELOG</div>
-    <div class="sec-title">更新履歴</div>
-    <div class="sec-desc" style="margin-bottom:20px">サーバーとMODの変更履歴です。</div>
-    <div class="card">
-      <div class="changelog">
-        <div class="cl-entry"><div class="cl-date">07/25</div><div class="cl-dot new"></div><div class="cl-content"><span class="cl-tag feature">機能追加</span><div class="cl-body"><strong>両サーバー並行稼働</strong>に移行。Forge MOD（<code>tsukapyon.playit.plus</code>）と OneBlock（<code>oneblock.playit.plus</code>）が常時同時稼働するようになりました。</div></div></div>
-        <div class="cl-entry"><div class="cl-date">07/25</div><div class="cl-dot new"></div><div class="cl-content"><span class="cl-tag feature">機能追加</span><div class="cl-body"><strong>ホワイトリスト制</strong>を導入。Discordで <code>/register</code> コマンドを使ってMinecraft IDを登録することで参加できます。</div></div></div>
-        <div class="cl-entry"><div class="cl-date">07/25</div><div class="cl-dot fix"></div><div class="cl-content"><span class="cl-tag fix">Bot更新</span><div class="cl-body">Discord Botを更新。サーバー自動切り替え・クラッシュ時の自動復旧・ステータス表示に今日のモード（Forge/OneBlock）を追加。</div></div></div>
-        <div class="cl-entry"><div class="cl-date">07/18</div><div class="cl-dot new"></div><div class="cl-content"><span class="cl-tag mod">MOD追加</span><div class="cl-body"><strong>FerriteCore 6.0.1</strong> を追加。メモリ最適化・起動時警告が解消されます。</div></div></div>
-        <div class="cl-entry"><div class="cl-date">07/18</div><div class="cl-dot fix"></div><div class="cl-content"><span class="cl-tag fix">不具合修正</span><div class="cl-body"><strong>Valhelsia Furniture 1.1.2 → 1.1.3</strong> に更新。テーブル・チェア・カーテンが正常にクラフトできるようになりました。</div></div></div>
-        <div class="cl-entry"><div class="cl-date">07/16</div><div class="cl-dot feat"></div><div class="cl-content"><span class="cl-tag feature">設定変更</span><div class="cl-body">定期再起動を <strong>0・4・8・12・16・20時</strong> の固定スケジュールに変更。30分前から事前通知を実施。</div></div></div>
-        <div class="cl-entry"><div class="cl-date">07/15</div><div class="cl-dot feat"></div><div class="cl-content"><span class="cl-tag feature">機能追加</span><div class="cl-body"><strong>Discord Bot</strong> を導入。#botチャンネルでサーバー状況をリアルタイム確認できます。</div></div></div>
-        <div class="cl-entry"><div class="cl-date">07/15</div><div class="cl-dot feat"></div><div class="cl-content"><span class="cl-tag feature">設定変更</span><div class="cl-body"><strong>フライト許可</strong>（allow-flight）を有効化。エリトラ・飛行系MOBで空を飛べるようになりました。</div></div></div>
-        <div class="cl-entry"><div class="cl-date">07/14</div><div class="cl-dot feat"></div><div class="cl-content"><span class="cl-tag feature">機能追加</span><div class="cl-body"><strong>スターターキット</strong>を実装。初回ログイン時にバックパック・食料・石ツール・松明・地図が配布されます。</div></div></div>
-        <div class="cl-entry"><div class="cl-date">07/13</div><div class="cl-dot new"></div><div class="cl-content"><span class="cl-tag mod">開設</span><div class="cl-body"><strong>Tsukapyon MC</strong> サーバー開設。Forge 1.20.1・71個のMODでスタート！</div></div></div>
-      </div>
-    </div>
-  </div>
 
   <!-- Footer -->
   <footer>
